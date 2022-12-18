@@ -1,0 +1,30 @@
+{
+  "devDependencies": {
+    "@jest/globals": "^29.3.1",
+    "@parcel/transformer-sass": "^2.8.2",
+    "@parcel/transformer-typescript-tsc": "^2.8.2",
+    "@parcel/validator-typescript": "^2.8.2",
+    "@types/jest": "^29.2.4",
+    "buffer": "^5.7.1",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
+    "parcel": "^2.8.0",
+    "ts-jest": "^29.0.3"
+  },
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "axios": "^1.2.1"
+  },
+  "scripts": {
+    "test": "jest --watchAll",
+    "start": "npx parcel src/index.html"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "coverageReporters": [
+      "html"
+    ]
+  }
+}
