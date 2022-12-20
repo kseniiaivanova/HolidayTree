@@ -6,3 +6,10 @@ main {
   padding: 0%;
   background-position: center;
 }
+
+.container-fluid {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+}
