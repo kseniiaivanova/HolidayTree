@@ -3,6 +3,9 @@ import { productcatalog } from "./models/productcatalog";
 
 function createHTML(productlist: Product[]) {
   for (let i: number = 0; i < productlist.length; i++) {
+    let productDiv: HTMLDivElement = document.getElementById(
+      "product_div"
+    ) as HTMLDivElement;
     let container: HTMLDivElement = document.createElement("div");
     let imgTag: HTMLImageElement = document.createElement("img");
     let title: HTMLHeadingElement = document.createElement("h3");
@@ -17,7 +20,7 @@ function createHTML(productlist: Product[]) {
     container.appendChild(title);
     container.appendChild(price);
     container.appendChild(descr);
-    document.body.appendChild(container);
+    productDiv.appendChild(container);
   }
 }
 
