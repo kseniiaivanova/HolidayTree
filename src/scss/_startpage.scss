@@ -5,4 +5,12 @@ main {
   width: auto;
   padding: 0%;
   background-position: center;
+
+  .button-container {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
