@@ -36,7 +36,7 @@ function createHTML(productlist: Product[]) {
     });
 
     addButton.addEventListener("click", () => {
-      addToCart();
+      addToCart(productlist[i]);
     });
 
     container.appendChild(imgTag);
@@ -71,9 +71,9 @@ function handleClick(product: Product) {
   addButton.innerHTML = "Add to cart";
   addButton.className = "buttons";
 
-  /* addButton.addEventListener("click", () => {
+  addButton.addEventListener("click", () => {
     addToCart(product);
-  }); */
+  });
 
   modalBody.appendChild(imgTag);
   modalBody.appendChild(detailDesc);
@@ -81,6 +81,20 @@ function handleClick(product: Product) {
   modalBody.appendChild(addButton);
 }
 
-function addToCart() {
-  console.log("hej");
+function addToCart(product: Product) {
+  console.log(product.name);
+
+  let chosenProducts: Product[] = [];
+  chosenProducts.push(product);
+  let cartItems = localStorage.getItem("chosenProduct");
+
+  if (cartItems !== null) {
+    product.amount += 1;
+    console.log(product.amount);
+  } else {
+    product.amount = 1;
+    console.log("hej");
+  }
+  let setProduct = JSON.stringify(product);
+  localStorage.setItem("chosenProduct", setProduct);
 }
