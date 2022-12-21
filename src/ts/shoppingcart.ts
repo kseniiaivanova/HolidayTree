@@ -35,10 +35,13 @@ function shoppingCartHtml() {
     let reduceBtn = document.createElement("i");
     let containerTag = document.createElement("div");
     let deleteBtn = document.createElement("button");
+    let imgTag = document.createElement("img");
+    imgTag.src = shoppingCartItems[i].img;
     deleteBtn.innerHTML = "remove";
     titleTag.innerText = shoppingCartItems[i].name;
     containerTag.className = "cart__item";
     containerTag.appendChild(titleTag);
+    containerTag.appendChild(imgTag);
     containerTag.appendChild(amountTag);
     containerTag.appendChild(deleteBtn);
     containerTag.appendChild(increaseBtn);
