@@ -12,6 +12,7 @@
     "ts-jest": "^29.0.3"
   },
   "dependencies": {
+    "@parcel/config-default": "^2.8.2",
     "@types/axios": "^0.14.0",
     "axios": "^1.2.1"
   },
