@@ -26,7 +26,7 @@ let newItem: Product = new Product(
 
 addToCart(newItem);
 
-function addToCart(item: Product) {
+export function addToCart(item: Product) {
   item.amount++;
   if (item.amount < 2) {
     shoppingCartItems.push(item);

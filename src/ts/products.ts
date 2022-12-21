@@ -1,5 +1,6 @@
 import { Product } from "./models/product_class";
 import { productcatalog } from "./models/productcatalog";
+import { addToCart } from "./shoppingcart";
 
 function createHTML(productlist: Product[]) {
   let productDiv: HTMLDivElement = document.getElementById(
@@ -73,8 +74,4 @@ function handleClick(product: Product) {
   modalBody.appendChild(detailDesc);
   modalBody.appendChild(price);
   modalBody.appendChild(addButton);
-}
-
-function addToCart(product: Product) {
-  console.log(product.name);
 }
