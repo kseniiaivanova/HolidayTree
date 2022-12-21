@@ -37,18 +37,21 @@ function shoppingCartHtml() {
     let increaseBtn = document.createElement("i");
     let reduceBtn = document.createElement("i");
     let containerTag = document.createElement("div");
+    let changeContainer = document.createElement("div");
     let deleteBtn = document.createElement("button");
     let imgTag = document.createElement("img");
     imgTag.src = shoppingCartItems[i].img;
     deleteBtn.innerHTML = "remove";
     titleTag.innerText = shoppingCartItems[i].name;
     containerTag.className = "cart__item";
+    changeContainer.className = "cart__item__changecontainer";
+    changeContainer.appendChild(increaseBtn);
+    changeContainer.appendChild(amountTag);
+    changeContainer.appendChild(reduceBtn);
     containerTag.appendChild(titleTag);
     containerTag.appendChild(imgTag);
-    containerTag.appendChild(amountTag);
+    containerTag.appendChild(changeContainer);
     containerTag.appendChild(deleteBtn);
-    containerTag.appendChild(increaseBtn);
-    containerTag.appendChild(reduceBtn);
 
     increaseBtn.classList.add("bi", "bi-plus-square");
     reduceBtn.classList.add("bi", "bi-dash-square");
