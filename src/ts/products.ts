@@ -1,8 +1,9 @@
 import { Product } from "./models/product_class";
 import { productcatalog } from "./models/productcatalog";
-import { addToCart, shoppingCartItems } from "./shoppingcart";
+/* import { addToCart } from "./shoppingcart"; */
+/* import { addToCart, shoppingCartItems } from "./shoppingcart"; */
 
-shoppingCartItems;
+//shoppingCartItems;
 
 function createHTML(productlist: Product[]) {
   let productDiv: HTMLDivElement = document.getElementById(
@@ -16,13 +17,14 @@ function createHTML(productlist: Product[]) {
     let imgTag: HTMLImageElement = document.createElement("img");
     let title: HTMLHeadingElement = document.createElement("h3");
     let descr: HTMLParagraphElement = document.createElement("p");
-    let price: HTMLParagraphElement = document.createElement("p");
+    let price: HTMLParagraphElement = document.createElement("h4");
     let addButton: HTMLButtonElement = document.createElement("button");
     imgTag.src = productlist[i].img;
     title.innerHTML = productlist[i].name;
     price.innerHTML = productlist[i].price.toString();
     descr.innerHTML = productlist[i].desc;
     addButton.innerHTML = "Add to cart";
+    addButton.className = "buttons";
 
     imgTag.className = "prodImg";
 
@@ -33,9 +35,9 @@ function createHTML(productlist: Product[]) {
       handleClick(productlist[i]);
     });
 
-    addButton.addEventListener("click", () => {
+    /*  addButton.addEventListener("click", () => {
       addToCart(productlist[i]);
-    });
+    }); */
 
     container.appendChild(imgTag);
     container.appendChild(title);
@@ -59,7 +61,7 @@ function handleClick(product: Product) {
   ) as HTMLHeadingElement;
   let imgTag: HTMLImageElement = document.createElement("img");
   let detailDesc: HTMLParagraphElement = document.createElement("p");
-  let price: HTMLParagraphElement = document.createElement("p");
+  let price: HTMLParagraphElement = document.createElement("h4");
   let addButton: HTMLButtonElement = document.createElement("button");
   imgTag.className = "prodImgModal";
   imgTag.src = product.img;
@@ -67,13 +69,18 @@ function handleClick(product: Product) {
   price.innerHTML = product.price.toString();
   detailDesc.innerHTML = product.detailedDesc;
   addButton.innerHTML = "Add to cart";
+  addButton.className = "buttons";
 
-  addButton.addEventListener("click", () => {
+  /* addButton.addEventListener("click", () => {
     addToCart(product);
-  });
+  }); */
 
   modalBody.appendChild(imgTag);
   modalBody.appendChild(detailDesc);
   modalBody.appendChild(price);
   modalBody.appendChild(addButton);
+}
+
+function addToCart() {
+  console.log("hej");
 }
