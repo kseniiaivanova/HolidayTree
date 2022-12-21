@@ -28,7 +28,7 @@
       <!-- <h1>HOLIDAY TREES</h1> -->
       <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"><i class="bi bi-cart"></i></a>
+          <a class="navbar-brand" href="#"><button class="openbtn" id="openCart"><i class="bi bi-cart"></i></button></a>
           <button
             class="navbar-toggler"
             type="button"
@@ -44,8 +44,7 @@
             <ul class="navbar-nav">
               <li class="nav-item">
                 
-              <i class="bi bi-tree"></i><a class="nav-link active" aria-current="page" href="#">HOLIDAY TREES</a
-                >
+             <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-tree"></i>holiday trees</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Products</a>
@@ -60,14 +59,18 @@
           </div>
         </div>
       </nav>
-      <div class="content">
-        <div class="sidebar">
-          <i class="bi bi-x"></i>
-        <h6>Din aktuella varukorg</h6>
-        <button type="button" id="button-checkout" class="buttons">gå till checkout</button>
-      </div>
-      <div class="button-container">
     </header>
+    <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" id="closeCart">×</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div id="main">
+      
+    
             <div class="button-container">
       <button type="button" id="button-product" class="buttons">
         Köp din julgran här!
