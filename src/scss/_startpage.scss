@@ -14,3 +14,28 @@ main {
     align-items: center;
   }
 }
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.sidebar {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+  height: 100%;
+  overflow-x: hidden;
+}
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.bi {
+  display: flex;
+  flex-direction: row-reverse;
+}
