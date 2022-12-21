@@ -1,7 +1,7 @@
 .cart {
   display: flex;
   flex-direction: column;
-  height: 80vh;
+
   justify-content: center;
   align-items: center;
 
@@ -27,8 +27,8 @@
     }
 
     img {
-      width: 50px;
-      height: 50px;
+      width: 50%;
+      height: auto;
     }
 
     button {
