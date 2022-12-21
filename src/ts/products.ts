@@ -30,6 +30,10 @@ function createHTML(productlist: Product[]) {
       handleClick(productlist[i]);
     });
 
+    addButton.addEventListener("click", () => {
+      addToCart(productlist[i]);
+    });
+
     container.appendChild(imgTag);
     container.appendChild(title);
     container.appendChild(price);
@@ -61,8 +65,16 @@ function handleClick(product: Product) {
   detailDesc.innerHTML = product.detailedDesc;
   addButton.innerHTML = "Add to cart";
 
+  addButton.addEventListener("click", () => {
+    addToCart(product);
+  });
+
   modalBody.appendChild(imgTag);
   modalBody.appendChild(detailDesc);
   modalBody.appendChild(price);
   modalBody.appendChild(addButton);
+}
+
+function addToCart(product: Product) {
+  console.log(product.name);
 }
