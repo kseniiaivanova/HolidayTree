@@ -35,9 +35,9 @@ function createHTML(productlist: Product[]) {
       handleClick(productlist[i]);
     });
 
-    /*  addButton.addEventListener("click", () => {
-      addToCart(productlist[i]);
-    }); */
+    addButton.addEventListener("click", () => {
+      addToCart();
+    });
 
     container.appendChild(imgTag);
     container.appendChild(title);
