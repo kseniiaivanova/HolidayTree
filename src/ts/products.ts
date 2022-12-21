@@ -2,10 +2,13 @@ import { Product } from "./models/product_class";
 import { productcatalog } from "./models/productcatalog";
 
 function createHTML(productlist: Product[]) {
+  let productDiv: HTMLDivElement = document.getElementById(
+    "product_div"
+  ) as HTMLDivElement;
+
+  productDiv.innerHTML = "";
+
   for (let i: number = 0; i < productlist.length; i++) {
-    let productDiv: HTMLDivElement = document.getElementById(
-      "product_div"
-    ) as HTMLDivElement;
     let container: HTMLDivElement = document.createElement("div");
     let imgTag: HTMLImageElement = document.createElement("img");
     let title: HTMLHeadingElement = document.createElement("h3");
@@ -18,6 +21,13 @@ function createHTML(productlist: Product[]) {
     descr.innerHTML = productlist[i].desc;
     addButton.innerHTML = "Add to cart";
 
+    container.setAttribute("data-bs-toggle", "modal");
+    container.setAttribute("data-bs-target", "#exampleModal");
+
+    container.addEventListener("click", () => {
+      handleClick(productlist[i]);
+    });
+
     container.appendChild(imgTag);
     container.appendChild(title);
     container.appendChild(price);
@@ -29,6 +39,27 @@ function createHTML(productlist: Product[]) {
 
 createHTML(productcatalog);
 
-const handleClick = (product: Product) => {
+function handleClick(product: Product) {
   console.log("Du klickade på", product.id);
-};
+  let modalBody: HTMLDivElement = document.getElementById(
+    "modal-body"
+  ) as HTMLDivElement;
+  modalBody.innerHTML = "";
+  let modalTitle: HTMLHeadingElement = document.getElementById(
+    "exampleModalLabel"
+  ) as HTMLHeadingElement;
+  let imgTag: HTMLImageElement = document.createElement("img");
+  let detailDesc: HTMLParagraphElement = document.createElement("p");
+  let price: HTMLParagraphElement = document.createElement("p");
+  let addButton: HTMLButtonElement = document.createElement("button");
+  imgTag.src = product.img;
+  modalTitle.innerHTML = product.name;
+  price.innerHTML = product.price.toString();
+  detailDesc.innerHTML = product.detailedDesc;
+  addButton.innerHTML = "Add to cart";
+
+  modalBody.appendChild(imgTag);
+  modalBody.appendChild(detailDesc);
+  modalBody.appendChild(price);
+  modalBody.appendChild(addButton);
+}
