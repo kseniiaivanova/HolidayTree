@@ -1,1 +1,17 @@
 @use "mixins";
+
+
+.modal fade {
+
+    
+    display: flex;
+    flex-direction: column;
+    background-color: aqua;
+    justify-content: center;
+    align-items: center;
+}
+
+ .prodImgModal {
+    width: 450px;
+    height: 450px;
+}

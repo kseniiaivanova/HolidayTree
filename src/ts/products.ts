@@ -52,6 +52,7 @@ function handleClick(product: Product) {
   let detailDesc: HTMLParagraphElement = document.createElement("p");
   let price: HTMLParagraphElement = document.createElement("p");
   let addButton: HTMLButtonElement = document.createElement("button");
+  imgTag.className = "prodImgModal";
   imgTag.src = product.img;
   modalTitle.innerHTML = product.name;
   price.innerHTML = product.price.toString();
