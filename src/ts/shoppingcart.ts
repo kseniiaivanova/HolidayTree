@@ -1,16 +1,13 @@
 import { Product } from "./models/product_class";
 
 let shoppingCartItems: Product[] = [
-new Product(
-    "Kungsgran",
-    "En tät och ståtlig gran med oöverträfflig livslängd och svag citrusdoft.",
-    549,
-    "https://svenskagranar.se/wp-content/uploads/2021/09/produkt_kungsgran-1024x683.webp",
-    "kungsgran",
-    "023",
-    "lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum",
-    0
-  )
+  new Product(
+    "Rödgran",
+    "En färgstark gran med ypperlig form och kådadoft synonym med jul.",
+    399,
+    "https://www.plantagen.se/dw/image/v2/BCMR_PRD/on/demandware.static/-/Sites-inriver-catalog/default/dwdfe75a40/images/large/527834-picea-abies-100-140cm-527834-5708145002297.jpg?sh=1236&sfrm=jpg",
+    "rödgran"
+  ),
 ];
 
 function addToCart(item: Product) {
@@ -38,13 +35,10 @@ function shoppingCartHtml() {
     let reduceBtn = document.createElement("i");
     let containerTag = document.createElement("div");
     let deleteBtn = document.createElement("button");
-    let imgTag = document.createElement("img");
-    imgTag.src = shoppingCartItems[i].img;
     deleteBtn.innerHTML = "remove";
     titleTag.innerText = shoppingCartItems[i].name;
     containerTag.className = "cart__item";
     containerTag.appendChild(titleTag);
-    containerTag.appendChild(imgTag);
     containerTag.appendChild(amountTag);
     containerTag.appendChild(deleteBtn);
     containerTag.appendChild(increaseBtn);
@@ -63,4 +57,3 @@ function shoppingCartHtml() {
 }
 
 shoppingCartHtml();
- */
