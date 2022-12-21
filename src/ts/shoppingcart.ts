@@ -1,7 +1,7 @@
 import { Product } from "./models/product_class";
 
 let shoppingCartItems: Product[] = [
-new Product(
+  new Product(
     "Kungsgran",
     "En tät och ståtlig gran med oöverträfflig livslängd och svag citrusdoft.",
     549,
@@ -10,7 +10,7 @@ new Product(
     "023",
     "lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum",
     0
-  )
+  ),
 ];
 
 function addToCart(item: Product) {
@@ -63,4 +63,3 @@ function shoppingCartHtml() {
 }
 
 shoppingCartHtml();
- */
