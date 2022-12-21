@@ -4,6 +4,9 @@ export class Product {
     public desc: string,
     public price: number,
     public img: string,
-    public type: string
+    public type: string,
+    public id: string,
+    public detailedDesc: string,
+    public amount: number
   ) {}
 }

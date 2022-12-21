@@ -11,17 +11,24 @@ function createHTML(productlist: Product[]) {
     let title: HTMLHeadingElement = document.createElement("h3");
     let descr: HTMLParagraphElement = document.createElement("p");
     let price: HTMLParagraphElement = document.createElement("p");
+    let addButton: HTMLButtonElement = document.createElement("button");
     imgTag.src = productlist[i].img;
     title.innerHTML = productlist[i].name;
     price.innerHTML = productlist[i].price.toString();
     descr.innerHTML = productlist[i].desc;
+    addButton.innerHTML = "Add to cart";
 
     container.appendChild(imgTag);
     container.appendChild(title);
     container.appendChild(price);
     container.appendChild(descr);
+    container.appendChild(addButton);
     productDiv.appendChild(container);
   }
 }
 
 createHTML(productcatalog);
+
+const handleClick = (product: Product) => {
+  console.log("Du klickade på", product.id);
+};

@@ -1,4 +1,4 @@
-import { Product } from "./models/product_class";
+/* import { Product } from "./models/product_class";
 
 let shoppingCartItems: Product[] = [
   new Product(
@@ -57,3 +57,4 @@ function shoppingCartHtml() {
 }
 
 shoppingCartHtml();
+ */
