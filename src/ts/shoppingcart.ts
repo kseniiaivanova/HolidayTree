@@ -1,6 +1,6 @@
 import { Product } from "./models/product_class";
 
-let shoppingCartItems: Product[] = [
+export let shoppingCartItems: Product[] = [
   new Product(
     "Kungsgran",
     "En tät och ståtlig gran med oöverträfflig livslängd och svag citrusdoft.",
@@ -27,6 +27,7 @@ let newItem: Product = new Product(
 addToCart(newItem);
 
 export function addToCart(item: Product) {
+  console.log(shoppingCartItems);
   item.amount++;
   if (item.amount < 2) {
     shoppingCartItems.push(item);

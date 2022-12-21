@@ -1,6 +1,8 @@
 import { Product } from "./models/product_class";
 import { productcatalog } from "./models/productcatalog";
-import { addToCart } from "./shoppingcart";
+import { addToCart, shoppingCartItems } from "./shoppingcart";
+
+shoppingCartItems;
 
 function createHTML(productlist: Product[]) {
   let productDiv: HTMLDivElement = document.getElementById(
