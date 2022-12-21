@@ -44,8 +44,9 @@ function shoppingCartHtml() {
     let reduceBtn = document.createElement("i");
     let containerTag = document.createElement("div");
     let changeContainer = document.createElement("div");
-    let deleteBtn = document.createElement("button");
     let imgTag = document.createElement("img");
+    let deleteBtn = document.createElement("button");
+
     imgTag.src = shoppingCartItems[i].img;
     deleteBtn.innerHTML = "remove";
     titleTag.innerText = shoppingCartItems[i].name;
