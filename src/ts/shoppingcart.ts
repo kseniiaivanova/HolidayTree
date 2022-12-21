@@ -58,7 +58,7 @@ function shoppingCartHtml() {
     changeContainer.appendChild(reduceBtn);
     containerTag.appendChild(titleTag);
     containerTag.appendChild(imgTag);
-    containerTag.appendChild(amountTag);
+    containerTag.appendChild(changeContainer);
     containerTag.appendChild(deleteBtn);
 
     increaseBtn.classList.add("bi", "bi-plus-square");

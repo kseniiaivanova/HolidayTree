@@ -21,6 +21,8 @@ function createHTML(productlist: Product[]) {
     descr.innerHTML = productlist[i].desc;
     addButton.innerHTML = "Add to cart";
 
+    imgTag.className = "prodImg";
+
     container.setAttribute("data-bs-toggle", "modal");
     container.setAttribute("data-bs-target", "#exampleModal");
 
@@ -52,6 +54,7 @@ function handleClick(product: Product) {
   let detailDesc: HTMLParagraphElement = document.createElement("p");
   let price: HTMLParagraphElement = document.createElement("p");
   let addButton: HTMLButtonElement = document.createElement("button");
+  imgTag.className = "prodImgModal";
   imgTag.src = product.img;
   modalTitle.innerHTML = product.name;
   price.innerHTML = product.price.toString();
