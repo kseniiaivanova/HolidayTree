@@ -81,20 +81,21 @@ function handleClick(product: Product) {
   modalBody.appendChild(addButton);
 }
 
+let chosenProducts: Product[] = [];
+
 function addToCart(product: Product) {
   console.log(product.name);
 
-  let chosenProducts: Product[] = [];
   chosenProducts.push(product);
-  let cartItems = localStorage.getItem("chosenProduct");
+  let cartItems = localStorage.getItem("cartItems") || [];
 
-  if (cartItems !== null) {
+  /* if (cartItems !== null) {
     product.amount += 1;
     console.log(product.amount);
   } else {
     product.amount = 1;
     console.log("hej");
-  }
-  let setProduct = JSON.stringify(product);
-  localStorage.setItem("chosenProduct", setProduct);
+  } */
+  let setProducts = JSON.stringify(chosenProducts);
+  localStorage.setItem("cartItems", setProducts);
 }
