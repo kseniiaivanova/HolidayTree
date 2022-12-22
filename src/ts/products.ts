@@ -33,7 +33,7 @@ function createHTML(productlist: Product[]) {
     container.setAttribute("data-bs-toggle", "modal");
     container.setAttribute("data-bs-target", "#exampleModal");
 
-    container.addEventListener("click", () => {
+    imgTag.addEventListener("click", () => {
       handleClick(productlist[i]);
     });
 
