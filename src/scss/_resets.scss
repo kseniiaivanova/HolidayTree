@@ -14,4 +14,8 @@ body {
 
 .buttons {
   @include mixins.buttons;
+  &:hover {
+    cursor: pointer;
+    background: rgb(189, 4, 38);
+  }
 }
