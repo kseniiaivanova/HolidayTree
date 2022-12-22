@@ -1,5 +1,6 @@
 import { Product } from "./models/product_class";
 import { productcatalog } from "./models/productcatalog";
+import { getListFromLS } from "./shoppingcart";
 /* import { addToCart } from "./shoppingcart"; */
 /* import { addToCart, shoppingCartItems } from "./shoppingcart"; */
 
@@ -113,6 +114,7 @@ function addToCart(product: Product, chosenProducts: Product[]) {
   } */
   let setProducts = JSON.stringify(chosenProducts);
   localStorage.setItem("cartItems", setProducts);
+  getListFromLS();
 }
 
 function OpenCart() {
@@ -149,3 +151,4 @@ function checkout() {
 }
 
 checkout();
+getListFromLS();

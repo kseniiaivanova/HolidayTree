@@ -30,7 +30,7 @@ function removeFromCart(item: Product, cartItems: Product[]) {
   shoppingCartHtml(cartItems);
 }
 
-function getListFromLS() {
+export function getListFromLS() {
   let cartItems: Product[] = JSON.parse(
     localStorage.getItem("cartItems") || "[]"
   );
@@ -112,3 +112,4 @@ export function shoppingCartHtml(cartItems: Product[]) {
 }
 
 getListFromLS();
+console.log("start");
