@@ -244,4 +244,4 @@ function shoppingCartHtml(cartItems: Product[]) {
 getListFromLS();
 console.log("start");
 
-console.log("hej");
+
