@@ -37,6 +37,9 @@
   transition: 0.5s;
   padding-top: 60px;
   float: right;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .sidebar a {
