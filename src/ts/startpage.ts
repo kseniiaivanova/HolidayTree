@@ -32,3 +32,14 @@ function closeCart() {
 }
 
 closeCart();
+
+function checkout() {
+  let checkoutButton = document.getElementById(
+    "button-checkout"
+  ) as HTMLButtonElement;
+  checkoutButton.addEventListener("click", () => {
+    location.href = "checkout.html";
+  });
+}
+
+checkout();

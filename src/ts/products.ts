@@ -114,3 +114,38 @@ function addToCart(product: Product, chosenProducts: Product[]) {
   let setProducts = JSON.stringify(chosenProducts);
   localStorage.setItem("cartItems", setProducts);
 }
+
+function OpenCart() {
+  let startButton = document.getElementById("openCart") as HTMLButtonElement;
+  startButton.addEventListener("click", () => {
+    let openSidebar = document.getElementById("mySidebar") as HTMLDivElement;
+    openSidebar.style.width = "250px";
+    let openMain = document.getElementById("main") as HTMLDivElement;
+    openMain.style.marginLeft = "250px";
+  });
+}
+
+OpenCart();
+
+function closeCart() {
+  let closeButton = document.getElementById("closeCart") as HTMLButtonElement;
+  closeButton.addEventListener("click", () => {
+    let closeSidebar = document.getElementById("mySidebar") as HTMLDivElement;
+    closeSidebar.style.width = "0";
+    let closeMain = document.getElementById("main") as HTMLDivElement;
+    closeMain.style.marginLeft = "0";
+  });
+}
+
+closeCart();
+
+function checkout() {
+  let checkoutButton = document.getElementById(
+    "button-checkout"
+  ) as HTMLButtonElement;
+  checkoutButton.addEventListener("click", () => {
+    location.href = "checkout.html";
+  });
+}
+
+checkout();
