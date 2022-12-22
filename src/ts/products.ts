@@ -30,8 +30,8 @@ function createHTML(productlist: Product[]) {
 
     imgTag.className = "prodImg";
 
-    container.setAttribute("data-bs-toggle", "modal");
-    container.setAttribute("data-bs-target", "#exampleModal");
+    imgTag.setAttribute("data-bs-toggle", "modal");
+    imgTag.setAttribute("data-bs-target", "#exampleModal");
 
     imgTag.addEventListener("click", () => {
       handleClick(productlist[i]);

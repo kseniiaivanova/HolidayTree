@@ -90,7 +90,7 @@ export function shoppingCartHtml(cartItems: Product[]) {
       removeFromCart(cartItems[i], cartItems);
     });
     priceTag.innerHTML =
-      (cartItems[i].amount * cartItems[i].price).toString() + "sek";
+      (cartItems[i].amount * cartItems[i].price).toString() + " sek";
 
     //to display
 

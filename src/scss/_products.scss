@@ -1,13 +1,14 @@
 @use "mixins";
 
-
-
-
 .prodImg {
-    width: 60%
+  width: 60%;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
 }
 
- .prodImgModal {
-    width: 450px;
-    height: 450px;
+.prodImgModal {
+  width: 450px;
+  height: 450px;
 }
