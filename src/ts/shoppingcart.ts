@@ -1,6 +1,6 @@
 import { Product } from "./models/product_class";
 
-export function addToCart(item: Product, cartItems: Product[]) {
+export function addMoreToCart(item: Product, cartItems: Product[]) {
   for (let i = 0; i < cartItems.length; i++) console.log(cartItems);
   if (item.amount < 1) {
     cartItems.push(item);
@@ -78,7 +78,7 @@ export function shoppingCartHtml(cartItems: Product[]) {
     reduceBtn.classList.add("bi", "bi-dash-square");
 
     increaseBtn.addEventListener("click", () => {
-      addToCart(cartItems[i], cartItems);
+      addMoreToCart(cartItems[i], cartItems);
     });
 
     reduceBtn.addEventListener("click", () => {
