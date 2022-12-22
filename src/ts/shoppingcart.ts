@@ -8,16 +8,28 @@ export function addToCart(item: Product, cartItems: Product[]) {
   item.amount++;
 
   shoppingCartHtml(cartItems);
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
 
-function removeFromCart(item: Product, cartItems: Product[]) {
+function reduceCart(item: Product, cartItems: Product[]) {
   item.amount--;
   if (item.amount < 1) {
     let listindex = cartItems.indexOf(item);
     cartItems.splice(listindex, 1);
   }
   shoppingCartHtml(cartItems);
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
+
+function removeFromCart(item: Product, cartItems: Product[]) {
+  let listindex = cartItems.indexOf(item);
+  cartItems.splice(listindex, 1);
+
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+  shoppingCartHtml(cartItems);
+}
+
 function getListFromLS() {
   let cartItems: Product[] = JSON.parse(
     localStorage.getItem("cartItems") || "[]"
@@ -70,7 +82,7 @@ export function shoppingCartHtml(cartItems: Product[]) {
     });
 
     reduceBtn.addEventListener("click", () => {
-      removeFromCart(cartItems[i], cartItems);
+      reduceCart(cartItems[i], cartItems);
     });
 
     deleteBtn.classList.add("buttons");
