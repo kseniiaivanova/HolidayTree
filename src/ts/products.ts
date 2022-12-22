@@ -5,6 +5,8 @@ import { productcatalog } from "./models/productcatalog";
 
 //shoppingCartItems;
 
+let chosenProducts: Product[] = [];
+
 function createHTML(productlist: Product[]) {
   let productDiv: HTMLDivElement = document.getElementById(
     "product_div"
@@ -36,7 +38,7 @@ function createHTML(productlist: Product[]) {
     });
 
     addButton.addEventListener("click", () => {
-      addToCart(productlist[i]);
+      addToCart(productlist[i], chosenProducts);
     });
 
     container.appendChild(imgTag);
@@ -72,7 +74,7 @@ function handleClick(product: Product) {
   addButton.className = "buttons";
 
   addButton.addEventListener("click", () => {
-    addToCart(product);
+    addToCart(product, chosenProducts);
   });
 
   modalBody.appendChild(imgTag);
@@ -81,13 +83,26 @@ function handleClick(product: Product) {
   modalBody.appendChild(addButton);
 }
 
-let chosenProducts: Product[] = [];
+function addToCart(product: Product, chosenProducts: Product[]) {
+  //for (let i: number = 0; i < chosenProducts.length; i++)
 
-function addToCart(product: Product) {
+  if (product.amount < 1) {
+    chosenProducts.push(product);
+
+    for (let i: number = 0; i < chosenProducts.length; i++) {
+      if (chosenProducts[i] === product) {
+        chosenProducts[i].amount++;
+      }
+    }
+  } else {
+    for (let i: number = 0; i < chosenProducts.length; i++) {
+      if (chosenProducts[i] === product) {
+        chosenProducts[i].amount++;
+      }
+    }
+  }
+
   console.log(product.name);
-
-  chosenProducts.push(product);
-  let cartItems = localStorage.getItem("cartItems") || [];
 
   /* if (cartItems !== null) {
     product.amount += 1;

@@ -1,54 +1,33 @@
 import { Product } from "./models/product_class";
 
-export let shoppingCartItems: Product[] = [
-  new Product(
-    "Kungsgran",
-    "En tät och ståtlig gran med oöverträfflig livslängd och svag citrusdoft.",
-    549,
-    "https://svenskagranar.se/wp-content/uploads/2021/09/produkt_kungsgran-1024x683.webp",
-    "kungsgran",
-    "023",
-    "lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum",
-    1
-  ),
-];
-
-let newItem: Product = new Product(
-  "Kungsgran",
-  "En tät och ståtlig gran med oöverträfflig livslängd och svag citrusdoft.",
-  549,
-  "https://svenskagranar.se/wp-content/uploads/2021/09/produkt_kungsgran-1024x683.webp",
-  "kungsgran",
-  "023",
-  "lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum",
-  0
-);
-
-addToCart(newItem);
-
-export function addToCart(item: Product) {
-  console.log(shoppingCartItems);
-  item.amount++;
-  if (item.amount < 2) {
-    shoppingCartItems.push(item);
+export function addToCart(item: Product, cartItems: Product[]) {
+  for (let i = 0; i < cartItems.length; i++) console.log(cartItems);
+  if (item.amount < 1) {
+    cartItems.push(item);
   }
-  shoppingCartHtml();
+  item.amount++;
+
+  shoppingCartHtml(cartItems);
 }
 
-function removeFromCart(item: Product) {
+function removeFromCart(item: Product, cartItems: Product[]) {
   item.amount--;
   if (item.amount < 1) {
-    let listindex = shoppingCartItems.indexOf(item);
-    shoppingCartItems.splice(listindex, 1);
+    let listindex = cartItems.indexOf(item);
+    cartItems.splice(listindex, 1);
   }
-  shoppingCartHtml();
+  shoppingCartHtml(cartItems);
 }
-
-function shoppingCartHtml() {
+function getListFromLS() {
+  let cartItems: Product[] = JSON.parse(
+    localStorage.getItem("cartItems") || "[]"
+  );
+  shoppingCartHtml(cartItems);
+}
+export function shoppingCartHtml(cartItems: Product[]) {
   console.log("hello world");
   // elements for the hole cart
 
-  localStorage.setItem("cartlist", JSON.stringify(shoppingCartItems));
   let cartTag = document.getElementById("cart-container") as HTMLDivElement;
   cartTag.innerHTML = "";
   let totalAmountTag = document.createElement("p");
@@ -57,8 +36,8 @@ function shoppingCartHtml() {
   // a variable to be able to count
 
   let sum: number = 0;
-  for (let i = 0; i < shoppingCartItems.length; i++) {
-    sum = sum + shoppingCartItems[i].amount * shoppingCartItems[i].price;
+  for (let i = 0; i < cartItems.length; i++) {
+    sum = sum + cartItems[i].amount * cartItems[i].price;
 
     //create new element for each
 
@@ -74,33 +53,32 @@ function shoppingCartHtml() {
 
     // innerhtml content
 
-    titleTag.innerText = shoppingCartItems[i].name;
+    titleTag.innerText = cartItems[i].name;
 
-    imgTag.src = shoppingCartItems[i].img;
-    imgTag.alt = shoppingCartItems[i].name;
+    imgTag.src = cartItems[i].img;
+    imgTag.alt = cartItems[i].name;
 
     deleteBtn.innerHTML = "remove";
     containerTag.className = "cart__item";
     changeContainer.className = "cart__item__changecontainer";
-    amountTag.innerHTML = shoppingCartItems[i].amount.toString();
+    amountTag.innerHTML = cartItems[i].amount.toString();
     increaseBtn.classList.add("bi", "bi-plus-square");
     reduceBtn.classList.add("bi", "bi-dash-square");
 
     increaseBtn.addEventListener("click", () => {
-      addToCart(shoppingCartItems[i]);
+      addToCart(cartItems[i], cartItems);
     });
 
     reduceBtn.addEventListener("click", () => {
-      removeFromCart(shoppingCartItems[i]);
+      removeFromCart(cartItems[i], cartItems);
     });
 
     deleteBtn.classList.add("buttons");
     deleteBtn.addEventListener("click", () => {
-      removeFromCart(shoppingCartItems[i]);
+      removeFromCart(cartItems[i], cartItems);
     });
     priceTag.innerHTML =
-      (shoppingCartItems[i].amount * shoppingCartItems[i].price).toString() +
-      "sek";
+      (cartItems[i].amount * cartItems[i].price).toString() + "sek";
 
     //to display
 
@@ -121,4 +99,4 @@ function shoppingCartHtml() {
   cartTag.appendChild(totalAmountTag);
 }
 
-shoppingCartHtml();
+getListFromLS();
