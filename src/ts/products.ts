@@ -23,7 +23,7 @@ function createHTML(productlist: Product[]) {
     let addButton: HTMLButtonElement = document.createElement("button");
     imgTag.src = productlist[i].img;
     title.innerHTML = productlist[i].name;
-    price.innerHTML = productlist[i].price.toString();
+    price.innerHTML = productlist[i].price.toString() + " SEK";
     descr.innerHTML = productlist[i].desc;
     addButton.innerHTML = "Add to cart";
     addButton.className = "buttons";
@@ -68,7 +68,7 @@ function handleClick(product: Product) {
   imgTag.className = "prodImgModal";
   imgTag.src = product.img;
   modalTitle.innerHTML = product.name;
-  price.innerHTML = product.price.toString();
+  price.innerHTML = product.price.toString() + " SEK";
   detailDesc.innerHTML = product.detailedDesc;
   addButton.innerHTML = "Add to cart";
   addButton.className = "buttons";
