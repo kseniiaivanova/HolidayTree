@@ -166,11 +166,14 @@ function getListFromLS() {
   );
   shoppingCartHtml(cartItems);
 }
+
 function shoppingCartHtml(cartItems: Product[]) {
   console.log("hello world");
   // elements for the hole cart
 
-  let cartTag = document.getElementById("cart-container") as HTMLDivElement;
+  let cartTag = document.getElementById(
+    "shoppingcart-container"
+  ) as HTMLDivElement;
   cartTag.innerHTML = "";
   let totalAmountTag = document.createElement("p");
   totalAmountTag.className = "totalamount";
@@ -201,8 +204,8 @@ function shoppingCartHtml(cartItems: Product[]) {
     imgTag.alt = cartItems[i].name;
 
     deleteBtn.innerHTML = "remove";
-    containerTag.className = "cart__item";
-    changeContainer.className = "cart__item__changecontainer";
+    containerTag.className = "shoppingcart__item";
+    changeContainer.className = "shoppingcart__item__changecontainer";
     amountTag.innerHTML = cartItems[i].amount.toString();
     increaseBtn.classList.add("bi", "bi-plus-square");
     reduceBtn.classList.add("bi", "bi-dash-square");
@@ -243,5 +246,3 @@ function shoppingCartHtml(cartItems: Product[]) {
 
 getListFromLS();
 console.log("start");
-
-

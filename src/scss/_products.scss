@@ -12,3 +12,45 @@
   width: 450px;
   height: 450px;
 }
+.shoppingcart {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: auto;
+
+    &__changecontainer {
+      width: 50%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+
+      p {
+        width: 50%;
+        height: 50%;
+        border: 1px solid black;
+        border-radius: 2px 2px;
+      }
+    }
+
+    img {
+      width: 50%;
+      height: auto;
+    }
+
+    button {
+      width: 30%;
+    }
+  }
+
+  .totalamount {
+    font-size: 2.5em;
+    bottom: 0%;
+  }
+}
