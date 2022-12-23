@@ -6,7 +6,6 @@ export class Product {
     public img: string,
     public type: string,
     public id: string,
-    public detailedDesc: string,
-    public amount: number
+    public detailedDesc: string
   ) {}
 }

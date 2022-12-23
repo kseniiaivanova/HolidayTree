@@ -1,4 +1,5 @@
-import { Product } from "./models/product_class";
+import { CartItem } from "./models/CartItem";
+import { Product } from "./models/Product";
 import { productcatalog } from "./models/productcatalog";
 
 /* import { addToCart } from "./shoppingcart"; */
@@ -6,7 +7,7 @@ import { productcatalog } from "./models/productcatalog";
 
 //shoppingCartItems;
 
-let chosenProducts: Product[] = JSON.parse(
+let chosenProducts: CartItem[] = JSON.parse(
   localStorage.getItem("cartItems") || "[]"
 );
 
@@ -121,9 +122,9 @@ function checkout() {
 
 checkout();
 
-function addToCart(item: Product, cartItems: Product[]) {
+function addToCart(item: Product, cartItems: CartItem[]) {
   for (let i = 0; i < cartItems.length; i++) {
-    if (cartItems[i].id === item.id) {
+    if (cartItems[i].product.id === item.id) {
       cartItems[i].amount++;
       let setProducts = JSON.stringify(chosenProducts);
       localStorage.setItem("cartItems", setProducts);
@@ -134,7 +135,7 @@ function addToCart(item: Product, cartItems: Product[]) {
     }
   }
 
-  let newCartItem: Product = Object.assign({}, item);
+  let newCartItem: CartItem = new CartItem(item, 0);
 
   newCartItem.amount++;
 
@@ -145,7 +146,14 @@ function addToCart(item: Product, cartItems: Product[]) {
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
 
-function reduceCart(item: Product, cartItems: Product[]) {
+function addMoreToCart(item: CartItem, cartItems: CartItem[]) {
+  item.amount++;
+
+  shoppingCartHtml(cartItems);
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+}
+
+function reduceCart(item: CartItem, cartItems: CartItem[]) {
   item.amount--;
   if (item.amount < 1) {
     let listindex = cartItems.indexOf(item);
@@ -155,7 +163,7 @@ function reduceCart(item: Product, cartItems: Product[]) {
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
 
-function removeFromCart(item: Product, cartItems: Product[]) {
+function removeFromCart(item: CartItem, cartItems: CartItem[]) {
   item.amount === 0;
   let listindex = cartItems.indexOf(item);
   cartItems.splice(listindex, 1);
@@ -166,13 +174,13 @@ function removeFromCart(item: Product, cartItems: Product[]) {
 }
 
 function getListFromLS() {
-  let cartItems: Product[] = JSON.parse(
+  let cartItems: CartItem[] = JSON.parse(
     localStorage.getItem("cartItems") || "[]"
   );
   shoppingCartHtml(cartItems);
 }
 
-function shoppingCartHtml(cartItems: Product[]) {
+function shoppingCartHtml(cartItems: CartItem[]) {
   console.log("hello world");
   // elements for the hole cart
 
@@ -187,7 +195,7 @@ function shoppingCartHtml(cartItems: Product[]) {
 
   let sum: number = 0;
   for (let i = 0; i < cartItems.length; i++) {
-    sum = sum + cartItems[i].amount * cartItems[i].price;
+    sum = sum + cartItems[i].amount * cartItems[i].product.price;
 
     //create new element for each
 
@@ -203,10 +211,10 @@ function shoppingCartHtml(cartItems: Product[]) {
 
     // innerhtml content
 
-    titleTag.innerText = cartItems[i].name;
+    titleTag.innerText = cartItems[i].product.name;
 
-    imgTag.src = cartItems[i].img;
-    imgTag.alt = cartItems[i].name;
+    imgTag.src = cartItems[i].product.img;
+    imgTag.alt = cartItems[i].product.name;
 
     deleteBtn.innerHTML = "remove";
     containerTag.className = "shoppingcart__item";
@@ -216,7 +224,7 @@ function shoppingCartHtml(cartItems: Product[]) {
     reduceBtn.classList.add("bi", "bi-dash-square");
 
     increaseBtn.addEventListener("click", () => {
-      addToCart(cartItems[i], cartItems);
+      addMoreToCart(cartItems[i], cartItems);
     });
 
     reduceBtn.addEventListener("click", () => {
@@ -228,7 +236,7 @@ function shoppingCartHtml(cartItems: Product[]) {
       removeFromCart(cartItems[i], cartItems);
     });
     priceTag.innerHTML =
-      (cartItems[i].amount * cartItems[i].price).toString() + " sek";
+      (cartItems[i].amount * cartItems[i].product.price).toString() + " sek";
 
     //to display
 

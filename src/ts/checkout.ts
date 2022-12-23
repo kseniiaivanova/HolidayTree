@@ -1,17 +1,14 @@
-import { Product } from "./models/product_class";
+import { CartItem } from "./models/CartItem";
+import { Product } from "./models/Product";
 
-export function addToCart(item: Product, cartItems: Product[]) {
-  for (let i = 0; i < cartItems.length; i++) console.log(cartItems);
-  if (item.amount < 1) {
-    cartItems.push(item);
-  }
+export function addToCart(item: CartItem, cartItems: CartItem[]) {
   item.amount++;
 
   shoppingCartHtml(cartItems);
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
 
-function reduceCart(item: Product, cartItems: Product[]) {
+function reduceCart(item: CartItem, cartItems: CartItem[]) {
   item.amount--;
   if (item.amount < 1) {
     let listindex = cartItems.indexOf(item);
@@ -21,7 +18,7 @@ function reduceCart(item: Product, cartItems: Product[]) {
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
 
-function removeFromCart(item: Product, cartItems: Product[]) {
+function removeFromCart(item: CartItem, cartItems: CartItem[]) {
   let listindex = cartItems.indexOf(item);
   cartItems.splice(listindex, 1);
 
@@ -31,12 +28,12 @@ function removeFromCart(item: Product, cartItems: Product[]) {
 }
 
 export function getListFromLS() {
-  let cartItems: Product[] = JSON.parse(
+  let cartItems: CartItem[] = JSON.parse(
     localStorage.getItem("cartItems") || "[]"
   );
   shoppingCartHtml(cartItems);
 }
-export function shoppingCartHtml(cartItems: Product[]) {
+export function shoppingCartHtml(cartItems: CartItem[]) {
   console.log("hello world");
   // elements for the hole cart
 
@@ -49,7 +46,7 @@ export function shoppingCartHtml(cartItems: Product[]) {
 
   let sum: number = 0;
   for (let i = 0; i < cartItems.length; i++) {
-    sum = sum + cartItems[i].amount * cartItems[i].price;
+    sum = sum + cartItems[i].amount * cartItems[i].product.price;
 
     //create new element for each
 
@@ -65,10 +62,10 @@ export function shoppingCartHtml(cartItems: Product[]) {
 
     // innerhtml content
 
-    titleTag.innerText = cartItems[i].name;
+    titleTag.innerText = cartItems[i].product.name;
 
-    imgTag.src = cartItems[i].img;
-    imgTag.alt = cartItems[i].name;
+    imgTag.src = cartItems[i].product.img;
+    imgTag.alt = cartItems[i].product.name;
 
     deleteBtn.innerHTML = "remove";
     containerTag.className = "cart__item";
@@ -90,7 +87,7 @@ export function shoppingCartHtml(cartItems: Product[]) {
       removeFromCart(cartItems[i], cartItems);
     });
     priceTag.innerHTML =
-      (cartItems[i].amount * cartItems[i].price).toString() + " sek";
+      (cartItems[i].amount * cartItems[i].product.price).toString() + " sek";
 
     //to display
 
