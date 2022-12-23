@@ -133,9 +133,13 @@ function addToCart(item: Product, cartItems: Product[]) {
       return;
     }
   }
-  item.amount++;
+
+  let newCartItem: Product = Object.assign({}, item);
+
+  newCartItem.amount++;
+
   console.log(cartItems);
-  cartItems.push(item);
+  cartItems.push(newCartItem);
 
   shoppingCartHtml(cartItems);
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -152,6 +156,7 @@ function reduceCart(item: Product, cartItems: Product[]) {
 }
 
 function removeFromCart(item: Product, cartItems: Product[]) {
+  item.amount === 0;
   let listindex = cartItems.indexOf(item);
   cartItems.splice(listindex, 1);
 
