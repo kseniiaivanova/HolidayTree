@@ -1,7 +1,11 @@
 @use "mixins";
 
 .prodImg {
-  width: 60%;
+  width: 50%;
+  @include mixins.desktop {
+    width: 30%;
+  }
+
   &:hover {
     cursor: pointer;
     opacity: 0.8;
@@ -12,7 +16,6 @@
   width: 450px;
   //height: 450px;
 }
-
 
 .shoppingcart {
   height: auto;
