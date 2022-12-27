@@ -108,5 +108,37 @@ export function shoppingCartHtml(cartItems: CartItem[]) {
   cartTag.appendChild(totalAmountTag);
 }
 
+function choseCard () {
+let radioOne: HTMLButtonElement = document.getElementById("card") as HTMLButtonElement;
+let cardForm = document.createElement("form") as HTMLFormElement;
+cardForm.innerHTML = "";
+radioOne.addEventListener("change",()=> {
+
+cardForm.innerHTML = "";
+cardForm.classList.add("paycard");
+let nameCard = document.createElement("input") as HTMLInputElement;
+nameCard.setAttribute("placeholder", "Namn");
+let surnameCard = document.createElement("input") as HTMLInputElement;
+surnameCard.setAttribute("placeholder", "Efternamn");
+let numberCard = document.createElement("input") as HTMLInputElement;
+numberCard.setAttribute("placeholder", "Kortnummer");
+let dateCard = document.createElement("input") as HTMLInputElement;
+dateCard.setAttribute("placeholder", "MM/ÅÅ");
+let cvcCard = document.createElement("input") as HTMLInputElement;
+cvcCard.setAttribute("placeholder", "CVC");
+let cardCont: HTMLDivElement = document.getElementById("cardCont") as HTMLDivElement;
+cardCont.appendChild(cardForm);
+cardForm.appendChild(nameCard);
+cardForm.appendChild(surnameCard);
+cardForm.appendChild(numberCard);
+cardForm.appendChild(dateCard);
+cardForm.appendChild(cvcCard);
+
+
+});
+};
+
+choseCard();
 getListFromLS();
 console.log("start");
+
