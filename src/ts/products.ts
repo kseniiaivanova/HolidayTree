@@ -2,16 +2,43 @@ import { CartItem } from "./models/CartItem";
 import { Product } from "./models/Product";
 import { productcatalog } from "./models/productcatalog";
 
-/* import { addToCart } from "./shoppingcart"; */
-/* import { addToCart, shoppingCartItems } from "./shoppingcart"; */
+// let chosenProducts: CartItem[] = JSON.parse(
+//   localStorage.getItem("cartItems") || "[]"
+// );
 
-//shoppingCartItems;
+function init() {
+  OpenCart();
+  closeCart();
+  checkout();
+  getListFromLS();
+  console.log("start");
+  document.getElementById("category-btn")?.addEventListener("click", () => {
+    sortByCategory(productcatalog);
+  });
+  // document.getElementById("price-btn")?.addEventListener("click", ()=>{sortByPrice(productcatalog);});
+}
 
-let chosenProducts: CartItem[] = JSON.parse(
-  localStorage.getItem("cartItems") || "[]"
-);
+function sortByCategory(products: Product[]) {
+  products.sort((a, b) => {
+    let fa = a.type.toLowerCase(),
+      fb = b.type.toLowerCase();
 
-function createHTML(productlist: Product[]) {
+    if (fa < fb) {
+      return -1;
+    }
+    if (fa > fb) {
+      return 1;
+    }
+    return 0;
+  });
+  init();
+}
+
+// function sortByPrice(products:Product[]){
+
+// };
+
+function createHTML(productlist: Product[], chosenProducts: CartItem[]) {
   let productDiv: HTMLDivElement = document.getElementById(
     "product_div"
   ) as HTMLDivElement;
@@ -38,7 +65,7 @@ function createHTML(productlist: Product[]) {
     imgTag.setAttribute("data-bs-target", "#exampleModal");
 
     imgTag.addEventListener("click", () => {
-      handleClick(productlist[i]);
+      handleClick(productlist[i], chosenProducts);
     });
 
     addButton.addEventListener("click", () => {
@@ -54,9 +81,7 @@ function createHTML(productlist: Product[]) {
   }
 }
 
-createHTML(productcatalog);
-
-function handleClick(product: Product) {
+function handleClick(product: Product, chosenProducts: CartItem[]) {
   console.log("Du klickade på", product.id);
   let modalBody: HTMLDivElement = document.getElementById(
     "modal-body"
@@ -97,8 +122,6 @@ function OpenCart() {
   });
 }
 
-OpenCart();
-
 function closeCart() {
   let closeButton = document.getElementById("closeCart") as HTMLButtonElement;
   closeButton.addEventListener("click", () => {
@@ -109,8 +132,6 @@ function closeCart() {
   });
 }
 
-closeCart();
-
 function checkout() {
   let checkoutButton = document.getElementById(
     "button-checkout"
@@ -120,14 +141,12 @@ function checkout() {
   });
 }
 
-checkout();
-
 function addToCart(item: Product, cartItems: CartItem[]) {
   for (let i = 0; i < cartItems.length; i++) {
     if (cartItems[i].product.id === item.id) {
       cartItems[i].amount++;
-      let setProducts = JSON.stringify(chosenProducts);
-      localStorage.setItem("cartItems", setProducts);
+      // let setProducts = JSON.stringify(chosenProducts);
+      // localStorage.setItem("cartItems", setProducts);
       shoppingCartHtml(cartItems);
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
@@ -177,6 +196,7 @@ function getListFromLS() {
   let cartItems: CartItem[] = JSON.parse(
     localStorage.getItem("cartItems") || "[]"
   );
+  createHTML(productcatalog, cartItems);
   shoppingCartHtml(cartItems);
 }
 
@@ -256,6 +276,4 @@ function shoppingCartHtml(cartItems: CartItem[]) {
   totalAmountTag.innerHTML = "Totalt: " + sum.toString() + " sek";
   cartTag.appendChild(totalAmountTag);
 }
-
-getListFromLS();
-console.log("start");
+init();
