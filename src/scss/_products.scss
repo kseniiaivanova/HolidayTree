@@ -1,18 +1,68 @@
 @use "mixins";
+@use "variables" as var;
 
-.prodImg {
-  width: 60%;
-  &:hover {
-    cursor: pointer;
-    opacity: 0.8;
+#product_div {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  width: 100%;
+  @include mixins.tablet {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: 90%;
+    margin: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+
+    @include mixins.tablet {
+      width: 45%;
+    }
+
+    .img-container {
+      display: flex;
+      justify-content: center;
+      height: 250px;
+      width: 250px;
+      .prodImg {
+        width: auto;
+        height: 100%;
+        @include mixins.desktop {
+        }
+
+        &:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
+      }
+    }
+
+    buttons {
+      bottom: 0;
+    }
+  }
+}
+
+.filter-btn {
+  width: auto;
+  font-size: 0.5em;
+  @include mixins.tablet {
+    font-size: 0.8em;
   }
 }
 
 .prodImgModal {
   width: 450px;
-  //height: 450px;
+  height: auto;
 }
-
 
 .shoppingcart {
   height: auto;
@@ -26,6 +76,14 @@
     align-items: center;
     height: auto;
     width: auto;
+    margin: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+    // border: 1px solid var.$secondarycolor;
+    background-color: white;
+    h3 {
+      font-size: 0.8em;
+    }
 
     &__changecontainer {
       width: 50%;
@@ -34,25 +92,35 @@
       justify-content: space-around;
 
       p {
-        width: 50%;
+        width: 30%;
         height: 50%;
+        margin: 0px;
+        text-align: center;
         border: 1px solid black;
         border-radius: 2px 2px;
       }
     }
 
     img {
-      width: 50%;
+      width: 30%;
       height: auto;
+    }
+    p {
+      margin: 0px;
+      text-align: center;
     }
 
     button {
+      font-size: 0.7em;
       width: 30%;
+      height: 10%;
+      margin-bottom: 5px;
+      margin-top: 0px;
     }
   }
+}
+.totalamount {
+  font-size: 1.5em;
 
-  .totalamount {
-    font-size: 2.5em;
-    bottom: 0%;
-  }
+  text-align: center;
 }

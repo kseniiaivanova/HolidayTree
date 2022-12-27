@@ -120,7 +120,7 @@ function shoppingCartHtml(cartItems: CartItem[]) {
     imgTag.src = cartItems[i].product.img;
     imgTag.alt = cartItems[i].product.name;
 
-    deleteBtn.innerHTML = "remove";
+    deleteBtn.innerHTML = "ta bort";
     containerTag.className = "shoppingcart__item";
     changeContainer.className = "shoppingcart__item__changecontainer";
     amountTag.innerHTML = cartItems[i].amount.toString();
