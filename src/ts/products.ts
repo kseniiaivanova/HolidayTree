@@ -12,9 +12,7 @@ function init() {
   checkout();
   getListFromLS();
   console.log("start");
-  document.getElementById("category-btn")?.addEventListener("click", () => {
-    sortByCategory(productcatalog);
-  });
+
   // document.getElementById("price-btn")?.addEventListener("click", ()=>{sortByPrice(productcatalog);});
 }
 
@@ -198,6 +196,25 @@ function getListFromLS() {
   );
   createHTML(productcatalog, cartItems);
   shoppingCartHtml(cartItems);
+  document.getElementById("red-spruce-btn")?.addEventListener("click", () => {
+    let type: string = "rödgran";
+    createHTMLByCategory(productcatalog, cartItems, type);
+  });
+  document
+    .getElementById("norway-spruce-btn")
+    ?.addEventListener("click", () => {
+      let type: string = "kungsgran";
+      createHTMLByCategory(productcatalog, cartItems, type);
+    });
+  document
+    .getElementById("platic-spruce-btn")
+    ?.addEventListener("click", () => {
+      let type: string = "plastgran";
+      createHTMLByCategory(productcatalog, cartItems, type);
+    });
+  document.getElementById("all-spruce-btn")?.addEventListener("click", () => {
+    createHTML(productcatalog, cartItems);
+  });
 }
 
 function shoppingCartHtml(cartItems: CartItem[]) {
@@ -277,3 +294,52 @@ function shoppingCartHtml(cartItems: CartItem[]) {
   cartTag.appendChild(totalAmountTag);
 }
 init();
+
+function createHTMLByCategory(
+  productlist: Product[],
+  chosenProducts: CartItem[],
+  type: string
+) {
+  let productDiv: HTMLDivElement = document.getElementById(
+    "product_div"
+  ) as HTMLDivElement;
+
+  productDiv.innerHTML = "";
+
+  for (let i: number = 0; i < productlist.length; i++) {
+    if (productlist[i].type === type) {
+      let container: HTMLDivElement = document.createElement("div");
+      let imgTag: HTMLImageElement = document.createElement("img");
+      let title: HTMLHeadingElement = document.createElement("h3");
+      let descr: HTMLParagraphElement = document.createElement("p");
+      let price: HTMLParagraphElement = document.createElement("h4");
+      let addButton: HTMLButtonElement = document.createElement("button");
+      imgTag.src = productlist[i].img;
+      title.innerHTML = productlist[i].name;
+      price.innerHTML = productlist[i].price.toString() + " SEK";
+      descr.innerHTML = productlist[i].desc;
+      addButton.innerHTML = "Lägg till";
+      addButton.className = "buttons";
+
+      imgTag.className = "prodImg";
+
+      imgTag.setAttribute("data-bs-toggle", "modal");
+      imgTag.setAttribute("data-bs-target", "#exampleModal");
+
+      imgTag.addEventListener("click", () => {
+        handleClick(productlist[i], chosenProducts);
+      });
+
+      addButton.addEventListener("click", () => {
+        addToCart(productlist[i], chosenProducts);
+      });
+
+      container.appendChild(imgTag);
+      container.appendChild(title);
+      container.appendChild(price);
+      container.appendChild(descr);
+      container.appendChild(addButton);
+      productDiv.appendChild(container);
+    }
+  }
+}
