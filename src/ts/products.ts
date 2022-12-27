@@ -56,7 +56,7 @@ function createHTML(productlist: Product[], chosenProducts: CartItem[]) {
     title.innerHTML = productlist[i].name;
     price.innerHTML = productlist[i].price.toString() + " SEK";
     descr.innerHTML = productlist[i].desc;
-    addButton.innerHTML = "Add to cart";
+    addButton.innerHTML = "Lägg till";
     addButton.className = "buttons";
 
     imgTag.className = "prodImg";
@@ -99,7 +99,7 @@ function handleClick(product: Product, chosenProducts: CartItem[]) {
   modalTitle.innerHTML = product.name;
   price.innerHTML = product.price.toString() + " SEK";
   detailDesc.innerHTML = product.detailedDesc;
-  addButton.innerHTML = "Add to cart";
+  addButton.innerHTML = "Lägg till";
   addButton.className = "buttons";
 
   addButton.addEventListener("click", () => {
@@ -236,7 +236,7 @@ function shoppingCartHtml(cartItems: CartItem[]) {
     imgTag.src = cartItems[i].product.img;
     imgTag.alt = cartItems[i].product.name;
 
-    deleteBtn.innerHTML = "remove";
+    deleteBtn.innerHTML = "ta bort";
     containerTag.className = "shoppingcart__item";
     changeContainer.className = "shoppingcart__item__changecontainer";
     amountTag.innerHTML = cartItems[i].amount.toString();
