@@ -108,5 +108,53 @@ export function shoppingCartHtml(cartItems: CartItem[]) {
   cartTag.appendChild(totalAmountTag);
 }
 
+function choseCard () {
+let radioOne: HTMLButtonElement = document.getElementById("card") as HTMLButtonElement;
+let cardForm = document.createElement("form") as HTMLFormElement;
+cardForm.innerHTML = "";
+radioOne.addEventListener("change",()=> {
+
+cardForm.innerHTML = "";
+cardForm.classList.add("paycard");
+let nameCard = document.createElement("input") as HTMLInputElement;
+let nameLabelCard = document.createElement("label") as HTMLLabelElement;
+nameLabelCard.innerHTML="Namn";
+//nameCard.setAttribute("placeholder", "Namn");
+
+let surnameCard = document.createElement("input") as HTMLInputElement;
+let surnameCardLabel = document.createElement("label") as HTMLLabelElement;
+surnameCardLabel.innerHTML="Efternamn";
+//surnameCard.setAttribute("placeholder", "Efternamn");
+let numberCard = document.createElement("input") as HTMLInputElement;
+let numberCardLabel = document.createElement("label") as HTMLLabelElement;
+numberCardLabel.innerHTML= "Kortnummer";
+//numberCard.setAttribute("placeholder", "Kortnummer");
+let dateCard = document.createElement("input") as HTMLInputElement;
+let dateCardLabel = document.createElement("label") as HTMLLabelElement;
+dateCardLabel.innerHTML = "MM/ÅÅ";
+//dateCard.setAttribute("placeholder", "MM/ÅÅ");
+let cvcCard = document.createElement("input") as HTMLInputElement;
+let cvcCardLabel = document.createElement("label") as HTMLLabelElement;
+cvcCardLabel.innerHTML = "CVC";
+//cvcCard.setAttribute("placeholder", "CVC");
+let cardCont: HTMLDivElement = document.getElementById("cardCont") as HTMLDivElement;
+cardCont.appendChild(cardForm);
+cardForm.appendChild(nameLabelCard);
+cardForm.appendChild(nameCard);
+cardForm.appendChild(surnameCardLabel);
+cardForm.appendChild(surnameCard);
+cardForm.appendChild(numberCardLabel);
+cardForm.appendChild(numberCard);
+cardForm.appendChild(dateCardLabel);
+cardForm.appendChild(dateCard);
+cardForm.appendChild(cvcCardLabel);
+cardForm.appendChild(cvcCard);
+
+
+});
+};
+
+choseCard();
 getListFromLS();
 console.log("start");
+

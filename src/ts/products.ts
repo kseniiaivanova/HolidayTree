@@ -2,39 +2,13 @@ import { CartItem } from "./models/CartItem";
 import { Product } from "./models/Product";
 import { productcatalog } from "./models/productcatalog";
 
-// let chosenProducts: CartItem[] = JSON.parse(
-//   localStorage.getItem("cartItems") || "[]"
-// );
-
 function init() {
   OpenCart();
   closeCart();
   checkout();
   getListFromLS();
   console.log("start");
-
-  // document.getElementById("price-btn")?.addEventListener("click", ()=>{sortByPrice(productcatalog);});
 }
-
-function sortByCategory(products: Product[]) {
-  products.sort((a, b) => {
-    let fa = a.type.toLowerCase(),
-      fb = b.type.toLowerCase();
-
-    if (fa < fb) {
-      return -1;
-    }
-    if (fa > fb) {
-      return 1;
-    }
-    return 0;
-  });
-  init();
-}
-
-// function sortByPrice(products:Product[]){
-
-// };
 
 function createHTML(productlist: Product[], chosenProducts: CartItem[]) {
   let productDiv: HTMLDivElement = document.getElementById(
@@ -45,12 +19,16 @@ function createHTML(productlist: Product[], chosenProducts: CartItem[]) {
 
   for (let i: number = 0; i < productlist.length; i++) {
     let container: HTMLDivElement = document.createElement("div");
+    let imgContainer: HTMLDivElement = document.createElement("div");
     let imgTag: HTMLImageElement = document.createElement("img");
     let title: HTMLHeadingElement = document.createElement("h3");
     let descr: HTMLParagraphElement = document.createElement("p");
     let price: HTMLParagraphElement = document.createElement("h4");
     let addButton: HTMLButtonElement = document.createElement("button");
     imgTag.src = productlist[i].img;
+    imgTag.alt = productlist[i].name;
+    container.className = "product-item";
+    imgContainer.className = "img-container";
     title.innerHTML = productlist[i].name;
     price.innerHTML = productlist[i].price.toString() + " SEK";
     descr.innerHTML = productlist[i].desc;
@@ -70,7 +48,9 @@ function createHTML(productlist: Product[], chosenProducts: CartItem[]) {
       addToCart(productlist[i], chosenProducts);
     });
 
-    container.appendChild(imgTag);
+    imgContainer.appendChild(imgTag);
+
+    container.appendChild(imgContainer);
     container.appendChild(title);
     container.appendChild(price);
     container.appendChild(descr);
@@ -309,12 +289,15 @@ function createHTMLByCategory(
   for (let i: number = 0; i < productlist.length; i++) {
     if (productlist[i].type === type) {
       let container: HTMLDivElement = document.createElement("div");
+      let imgContainer: HTMLDivElement = document.createElement("div");
       let imgTag: HTMLImageElement = document.createElement("img");
       let title: HTMLHeadingElement = document.createElement("h3");
       let descr: HTMLParagraphElement = document.createElement("p");
       let price: HTMLParagraphElement = document.createElement("h4");
       let addButton: HTMLButtonElement = document.createElement("button");
       imgTag.src = productlist[i].img;
+      imgTag.alt = productlist[i].name;
+      container.className = "product-item";
       title.innerHTML = productlist[i].name;
       price.innerHTML = productlist[i].price.toString() + " SEK";
       descr.innerHTML = productlist[i].desc;
@@ -322,6 +305,7 @@ function createHTMLByCategory(
       addButton.className = "buttons";
 
       imgTag.className = "prodImg";
+      imgContainer.className = "img-container";
 
       imgTag.setAttribute("data-bs-toggle", "modal");
       imgTag.setAttribute("data-bs-target", "#exampleModal");
@@ -334,7 +318,9 @@ function createHTMLByCategory(
         addToCart(productlist[i], chosenProducts);
       });
 
-      container.appendChild(imgTag);
+      imgContainer.appendChild(imgTag);
+
+      container.appendChild(imgContainer);
       container.appendChild(title);
       container.appendChild(price);
       container.appendChild(descr);
