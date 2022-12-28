@@ -118,6 +118,7 @@ cardForm.innerHTML = "";
 cardForm.classList.add("paycard");
 let nameCard = document.createElement("input") as HTMLInputElement;
 nameCard.setAttribute("placeholder", "Namn");
+
 let surnameCard = document.createElement("input") as HTMLInputElement;
 surnameCard.setAttribute("placeholder", "Efternamn");
 let numberCard = document.createElement("input") as HTMLInputElement;
