@@ -6,10 +6,6 @@ function init() {
   OpenCart();
   closeCart();
   checkout();
-  getListFromLS();
-  console.log("start");
-}
-function getListFromLS() {
   let cartItems: CartItem[] = JSON.parse(
     localStorage.getItem("cartItems") || "[]"
   );
@@ -199,10 +195,8 @@ function removeFromCart(item: CartItem, cartItems: CartItem[]) {
 
   shoppingCartHtml(cartItems);
 }
-export function shoppingCartHtml(cartItems: CartItem[]) {
-  console.log("hello world");
-  // elements for the hole cart
 
+function shoppingCartHtml(cartItems: CartItem[]) {
   let cartTag = document.getElementById(
     "shoppingcart-container"
   ) as HTMLDivElement;
