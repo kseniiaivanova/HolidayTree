@@ -9,8 +9,19 @@ function init() {
   getListFromLS();
   console.log("start");
 }
+function getListFromLS() {
+  let cartItems: CartItem[] = JSON.parse(
+    localStorage.getItem("cartItems") || "[]"
+  );
+  createHTML(productcatalog, cartItems, "all");
+  shoppingCartHtml(cartItems);
+}
 
-function createHTML(productlist: Product[], chosenProducts: CartItem[]) {
+function createHTML(
+  productlist: Product[],
+  chosenProducts: CartItem[],
+  type: string
+) {
   let productDiv: HTMLDivElement = document.getElementById(
     "product_div"
   ) as HTMLDivElement;
@@ -18,45 +29,66 @@ function createHTML(productlist: Product[], chosenProducts: CartItem[]) {
   productDiv.innerHTML = "";
 
   for (let i: number = 0; i < productlist.length; i++) {
-    let container: HTMLDivElement = document.createElement("div");
-    let imgContainer: HTMLDivElement = document.createElement("div");
-    let imgTag: HTMLImageElement = document.createElement("img");
-    let title: HTMLHeadingElement = document.createElement("h3");
-    let descr: HTMLParagraphElement = document.createElement("p");
-    let price: HTMLParagraphElement = document.createElement("h4");
-    let addButton: HTMLButtonElement = document.createElement("button");
-    imgTag.src = productlist[i].img;
-    imgTag.alt = productlist[i].name;
-    container.className = "product-item";
-    imgContainer.className = "img-container";
-    title.innerHTML = productlist[i].name;
-    price.innerHTML = productlist[i].price.toString() + " SEK";
-    descr.innerHTML = productlist[i].desc;
-    addButton.innerHTML = "Lägg till";
-    addButton.className = "buttons";
+    if (productlist[i].type === type || type === "all") {
+      let container: HTMLDivElement = document.createElement("div");
+      let imgContainer: HTMLDivElement = document.createElement("div");
+      let imgTag: HTMLImageElement = document.createElement("img");
+      let title: HTMLHeadingElement = document.createElement("h3");
+      let descr: HTMLParagraphElement = document.createElement("p");
+      let price: HTMLParagraphElement = document.createElement("h4");
+      let addButton: HTMLButtonElement = document.createElement("button");
+      imgTag.src = productlist[i].img;
+      imgTag.alt = productlist[i].name;
+      container.className = "product-item";
+      title.innerHTML = productlist[i].name;
+      price.innerHTML = productlist[i].price.toString() + " SEK";
+      descr.innerHTML = productlist[i].desc;
+      addButton.innerHTML = "Lägg till";
+      addButton.className = "buttons";
 
-    imgTag.className = "prodImg";
+      imgTag.className = "prodImg";
+      imgContainer.className = "img-container";
 
-    imgTag.setAttribute("data-bs-toggle", "modal");
-    imgTag.setAttribute("data-bs-target", "#exampleModal");
+      imgTag.setAttribute("data-bs-toggle", "modal");
+      imgTag.setAttribute("data-bs-target", "#exampleModal");
 
-    imgTag.addEventListener("click", () => {
-      handleClick(productlist[i], chosenProducts);
-    });
+      imgTag.addEventListener("click", () => {
+        handleClick(productlist[i], chosenProducts);
+      });
 
-    addButton.addEventListener("click", () => {
-      addToCart(productlist[i], chosenProducts);
-    });
+      addButton.addEventListener("click", () => {
+        addToCart(productlist[i], chosenProducts);
+      });
 
-    imgContainer.appendChild(imgTag);
+      imgContainer.appendChild(imgTag);
 
-    container.appendChild(imgContainer);
-    container.appendChild(title);
-    container.appendChild(price);
-    container.appendChild(descr);
-    container.appendChild(addButton);
-    productDiv.appendChild(container);
+      container.appendChild(imgContainer);
+      container.appendChild(title);
+      container.appendChild(price);
+      container.appendChild(descr);
+      container.appendChild(addButton);
+      productDiv.appendChild(container);
+    }
   }
+  document.getElementById("red-spruce-btn")?.addEventListener("click", () => {
+    let type: string = "rödgran";
+    createHTML(productcatalog, chosenProducts, type);
+  });
+  document
+    .getElementById("norway-spruce-btn")
+    ?.addEventListener("click", () => {
+      let type: string = "kungsgran";
+      createHTML(productcatalog, chosenProducts, type);
+    });
+  document
+    .getElementById("platic-spruce-btn")
+    ?.addEventListener("click", () => {
+      let type: string = "plastgran";
+      createHTML(productcatalog, chosenProducts, type);
+    });
+  document.getElementById("all-spruce-btn")?.addEventListener("click", () => {
+    createHTML(productcatalog, chosenProducts, "all");
+  });
 }
 
 function handleClick(product: Product, chosenProducts: CartItem[]) {
@@ -123,8 +155,6 @@ function addToCart(item: Product, cartItems: CartItem[]) {
   for (let i = 0; i < cartItems.length; i++) {
     if (cartItems[i].product.id === item.id) {
       cartItems[i].amount++;
-      // let setProducts = JSON.stringify(chosenProducts);
-      // localStorage.setItem("cartItems", setProducts);
       shoppingCartHtml(cartItems);
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
@@ -169,35 +199,7 @@ function removeFromCart(item: CartItem, cartItems: CartItem[]) {
 
   shoppingCartHtml(cartItems);
 }
-
-function getListFromLS() {
-  let cartItems: CartItem[] = JSON.parse(
-    localStorage.getItem("cartItems") || "[]"
-  );
-  createHTML(productcatalog, cartItems);
-  shoppingCartHtml(cartItems);
-  document.getElementById("red-spruce-btn")?.addEventListener("click", () => {
-    let type: string = "rödgran";
-    createHTMLByCategory(productcatalog, cartItems, type);
-  });
-  document
-    .getElementById("norway-spruce-btn")
-    ?.addEventListener("click", () => {
-      let type: string = "kungsgran";
-      createHTMLByCategory(productcatalog, cartItems, type);
-    });
-  document
-    .getElementById("platic-spruce-btn")
-    ?.addEventListener("click", () => {
-      let type: string = "plastgran";
-      createHTMLByCategory(productcatalog, cartItems, type);
-    });
-  document.getElementById("all-spruce-btn")?.addEventListener("click", () => {
-    createHTML(productcatalog, cartItems);
-  });
-}
-
-function shoppingCartHtml(cartItems: CartItem[]) {
+export function shoppingCartHtml(cartItems: CartItem[]) {
   console.log("hello world");
   // elements for the hole cart
 
@@ -208,13 +210,9 @@ function shoppingCartHtml(cartItems: CartItem[]) {
   let totalAmountTag = document.createElement("p");
   totalAmountTag.className = "totalamount";
 
-  // a variable to be able to count
-
   let sum: number = 0;
   for (let i = 0; i < cartItems.length; i++) {
     sum = sum + cartItems[i].amount * cartItems[i].product.price;
-
-    //create new element for each
 
     let containerTag = document.createElement("div");
     let titleTag = document.createElement("h3");
@@ -225,8 +223,6 @@ function shoppingCartHtml(cartItems: CartItem[]) {
     let reduceBtn = document.createElement("i");
     let priceTag = document.createElement("p");
     let deleteBtn = document.createElement("button");
-
-    // innerhtml content
 
     titleTag.innerText = cartItems[i].product.name;
 
@@ -255,8 +251,6 @@ function shoppingCartHtml(cartItems: CartItem[]) {
     priceTag.innerHTML =
       (cartItems[i].amount * cartItems[i].product.price).toString() + " sek";
 
-    //to display
-
     changeContainer.appendChild(reduceBtn);
     changeContainer.appendChild(amountTag);
     changeContainer.appendChild(increaseBtn);
@@ -269,63 +263,9 @@ function shoppingCartHtml(cartItems: CartItem[]) {
 
     cartTag.appendChild(containerTag);
   }
-  //to display total price
+
   totalAmountTag.innerHTML = "Totalt: " + sum.toString() + " sek";
   cartTag.appendChild(totalAmountTag);
 }
+
 init();
-
-function createHTMLByCategory(
-  productlist: Product[],
-  chosenProducts: CartItem[],
-  type: string
-) {
-  let productDiv: HTMLDivElement = document.getElementById(
-    "product_div"
-  ) as HTMLDivElement;
-
-  productDiv.innerHTML = "";
-
-  for (let i: number = 0; i < productlist.length; i++) {
-    if (productlist[i].type === type) {
-      let container: HTMLDivElement = document.createElement("div");
-      let imgContainer: HTMLDivElement = document.createElement("div");
-      let imgTag: HTMLImageElement = document.createElement("img");
-      let title: HTMLHeadingElement = document.createElement("h3");
-      let descr: HTMLParagraphElement = document.createElement("p");
-      let price: HTMLParagraphElement = document.createElement("h4");
-      let addButton: HTMLButtonElement = document.createElement("button");
-      imgTag.src = productlist[i].img;
-      imgTag.alt = productlist[i].name;
-      container.className = "product-item";
-      title.innerHTML = productlist[i].name;
-      price.innerHTML = productlist[i].price.toString() + " SEK";
-      descr.innerHTML = productlist[i].desc;
-      addButton.innerHTML = "Lägg till";
-      addButton.className = "buttons";
-
-      imgTag.className = "prodImg";
-      imgContainer.className = "img-container";
-
-      imgTag.setAttribute("data-bs-toggle", "modal");
-      imgTag.setAttribute("data-bs-target", "#exampleModal");
-
-      imgTag.addEventListener("click", () => {
-        handleClick(productlist[i], chosenProducts);
-      });
-
-      addButton.addEventListener("click", () => {
-        addToCart(productlist[i], chosenProducts);
-      });
-
-      imgContainer.appendChild(imgTag);
-
-      container.appendChild(imgContainer);
-      container.appendChild(title);
-      container.appendChild(price);
-      container.appendChild(descr);
-      container.appendChild(addButton);
-      productDiv.appendChild(container);
-    }
-  }
-}
