@@ -1,115 +1,125 @@
-// import { Product } from "./models/Product";
+import { CartItem } from "./models/CartItem";
 
-// export function addMoreToCart(item: Product, cartItems: Product[]) {
-//   for (let i = 0; i < cartItems.length; i++) console.log(cartItems);
-//   if (item.amount < 1) {
-//     cartItems.push(item);
-//   }
-//   item.amount++;
+export function openCart() {
+  let startButton = document.getElementById("openCart") as HTMLButtonElement;
+  startButton.addEventListener("click", () => {
+    let openSidebar = document.getElementById("mySidebar") as HTMLDivElement;
+    openSidebar.style.width = "250px";
+    let openMain = document.getElementById("main") as HTMLDivElement;
+    openMain.style.marginLeft = "250px";
+  });
+}
+export function shoppingCartHtml(cartItems: CartItem[]) {
+  let cartTag = document.getElementById(
+    "shoppingcart-container"
+  ) as HTMLDivElement;
+  cartTag.innerHTML = "";
+  let totalAmountTag = document.createElement("p");
+  totalAmountTag.className = "totalamount";
 
-//   shoppingCartHtml(cartItems);
-//   localStorage.setItem("cartItems", JSON.stringify(cartItems));
-// }
+  let sum: number = 0;
+  let itemsInCartTotal: number = 0;
+  for (let i = 0; i < cartItems.length; i++) {
+    sum = sum + cartItems[i].amount * cartItems[i].product.price;
 
-// function reduceCart(item: Product, cartItems: Product[]) {
-//   item.amount--;
-//   if (item.amount < 1) {
-//     let listindex = cartItems.indexOf(item);
-//     cartItems.splice(listindex, 1);
-//   }
-//   shoppingCartHtml(cartItems);
-//   localStorage.setItem("cartItems", JSON.stringify(cartItems));
-// }
+    itemsInCartTotal = itemsInCartTotal + cartItems[i].amount;
 
-// function removeFromCart(item: Product, cartItems: Product[]) {
-//   let listindex = cartItems.indexOf(item);
-//   cartItems.splice(listindex, 1);
+    let containerTag = document.createElement("div");
+    let titleTag = document.createElement("h3");
+    let imgTag = document.createElement("img");
+    let changeContainer = document.createElement("div");
+    let amountTag = document.createElement("p");
+    let increaseBtn = document.createElement("i");
+    let reduceBtn = document.createElement("i");
+    let priceTag = document.createElement("p");
+    let deleteBtn = document.createElement("button");
 
-//   localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    titleTag.innerText = cartItems[i].product.name;
 
-//   shoppingCartHtml(cartItems);
-// }
+    imgTag.src = cartItems[i].product.img;
+    imgTag.alt = cartItems[i].product.name;
 
-// export function getListFromLS() {
-//   let cartItems: Product[] = JSON.parse(
-//     localStorage.getItem("cartItems") || "[]"
-//   );
-//   shoppingCartHtml(cartItems);
-// }
-// export function shoppingCartHtml(cartItems: Product[]) {
-//   console.log("hello world");
-//   // elements for the hole cart
+    deleteBtn.innerHTML = "ta bort";
+    containerTag.className = "shoppingcart__item";
+    changeContainer.className = "shoppingcart__item__changecontainer";
+    amountTag.innerHTML = cartItems[i].amount.toString();
+    increaseBtn.classList.add("bi", "bi-plus-square");
+    reduceBtn.classList.add("bi", "bi-dash-square");
 
-//   let cartTag = document.getElementById("cart-container") as HTMLDivElement;
-//   cartTag.innerHTML = "";
-//   let totalAmountTag = document.createElement("p");
-//   totalAmountTag.className = "totalamount";
+    increaseBtn.addEventListener("click", () => {
+      addMoreToCart(cartItems[i], cartItems);
+    });
 
-//   // a variable to be able to count
+    reduceBtn.addEventListener("click", () => {
+      reduceCart(cartItems[i], cartItems);
+    });
 
-//   let sum: number = 0;
-//   for (let i = 0; i < cartItems.length; i++) {
-//     sum = sum + cartItems[i].amount * cartItems[i].price;
+    deleteBtn.classList.add("buttons");
+    deleteBtn.addEventListener("click", () => {
+      removeFromCart(cartItems[i], cartItems);
+    });
+    priceTag.innerHTML =
+      (cartItems[i].amount * cartItems[i].product.price).toString() + " sek";
 
-//     //create new element for each
+    changeContainer.appendChild(reduceBtn);
+    changeContainer.appendChild(amountTag);
+    changeContainer.appendChild(increaseBtn);
 
-//     let containerTag = document.createElement("div");
-//     let titleTag = document.createElement("h3");
-//     let imgTag = document.createElement("img");
-//     let changeContainer = document.createElement("div");
-//     let amountTag = document.createElement("p");
-//     let increaseBtn = document.createElement("i");
-//     let reduceBtn = document.createElement("i");
-//     let priceTag = document.createElement("p");
-//     let deleteBtn = document.createElement("button");
+    containerTag.appendChild(titleTag);
+    containerTag.appendChild(imgTag);
+    containerTag.appendChild(changeContainer);
+    containerTag.appendChild(priceTag);
+    containerTag.appendChild(deleteBtn);
 
-//     // innerhtml content
+    cartTag.appendChild(containerTag);
+  }
 
-//     titleTag.innerText = cartItems[i].name;
+  totalAmountTag.innerHTML = "Totalt: " + sum.toString() + " sek";
+  cartTag.appendChild(totalAmountTag);
+  console.log(itemsInCartTotal);
+  (document.getElementById("cart-total") as HTMLElement).innerHTML =
+    itemsInCartTotal.toString();
+}
+function addMoreToCart(item: CartItem, cartItems: CartItem[]) {
+  item.amount++;
 
-//     imgTag.src = cartItems[i].img;
-//     imgTag.alt = cartItems[i].name;
+  shoppingCartHtml(cartItems);
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+}
 
-//     deleteBtn.innerHTML = "remove";
-//     containerTag.className = "cart__item";
-//     changeContainer.className = "cart__item__changecontainer";
-//     amountTag.innerHTML = cartItems[i].amount.toString();
-//     increaseBtn.classList.add("bi", "bi-plus-square");
-//     reduceBtn.classList.add("bi", "bi-dash-square");
+function reduceCart(item: CartItem, cartItems: CartItem[]) {
+  item.amount--;
+  if (item.amount < 1) {
+    let listindex = cartItems.indexOf(item);
+    cartItems.splice(listindex, 1);
+  }
+  shoppingCartHtml(cartItems);
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+}
 
-//     increaseBtn.addEventListener("click", () => {
-//       addMoreToCart(cartItems[i], cartItems);
-//     });
+function removeFromCart(item: CartItem, cartItems: CartItem[]) {
+  item.amount === 0;
+  let listIndex = cartItems.indexOf(item);
+  cartItems.splice(listIndex, 1);
 
-//     reduceBtn.addEventListener("click", () => {
-//       reduceCart(cartItems[i], cartItems);
-//     });
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
-//     deleteBtn.classList.add("buttons");
-//     deleteBtn.addEventListener("click", () => {
-//       removeFromCart(cartItems[i], cartItems);
-//     });
-//     priceTag.innerHTML =
-//       (cartItems[i].amount * cartItems[i].price).toString() + " sek";
-
-//     //to display
-
-//     changeContainer.appendChild(reduceBtn);
-//     changeContainer.appendChild(amountTag);
-//     changeContainer.appendChild(increaseBtn);
-
-//     containerTag.appendChild(titleTag);
-//     containerTag.appendChild(imgTag);
-//     containerTag.appendChild(changeContainer);
-//     containerTag.appendChild(priceTag);
-//     containerTag.appendChild(deleteBtn);
-
-//     cartTag.appendChild(containerTag);
-//   }
-//   //to display total price
-//   totalAmountTag.innerHTML = "Totalt: " + sum.toString() + " sek";
-//   cartTag.appendChild(totalAmountTag);
-// }
-
-// getListFromLS();
-// console.log("start");
+  shoppingCartHtml(cartItems);
+}
+export function closeCart() {
+  let closeButton = document.getElementById("closeCart") as HTMLButtonElement;
+  closeButton.addEventListener("click", () => {
+    let closeSidebar = document.getElementById("mySidebar") as HTMLDivElement;
+    closeSidebar.style.width = "0";
+    let closeMain = document.getElementById("main") as HTMLDivElement;
+    closeMain.style.marginLeft = "0";
+  });
+}
+export function checkout() {
+  let checkoutButton = document.getElementById(
+    "button-checkout"
+  ) as HTMLButtonElement;
+  checkoutButton.addEventListener("click", () => {
+    location.href = "checkout.html";
+  });
+}
