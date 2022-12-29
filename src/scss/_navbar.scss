@@ -1,7 +1,23 @@
+@use "variables" as var;
+
 .container-fluid {
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.1);
+}
+#cart-total {
+  font-size: 0.5em;
+  color: #fff;
+  background: var.$primarycolor;
+  border-radius: 50%;
+  padding: 0 5px;
+  position: relative;
+  left: -8px;
+  top: -10px;
+  opacity: 0.9;
+  font-style: normal;
+  width: 15px;
+  height: 15px;
 }
