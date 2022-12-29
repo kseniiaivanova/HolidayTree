@@ -94,12 +94,14 @@ function shoppingCartHtml(cartItems: CartItem[]) {
   cartTag.innerHTML = "";
   let totalAmountTag = document.createElement("p");
   totalAmountTag.className = "totalamount";
+  let itemsInCartTotal: number = 0;
 
   // a variable to be able to count
 
   let sum: number = 0;
   for (let i = 0; i < cartItems.length; i++) {
     sum = sum + cartItems[i].amount * cartItems[i].product.price;
+    itemsInCartTotal = itemsInCartTotal + cartItems[i].amount;
 
     //create new element for each
 
@@ -159,6 +161,8 @@ function shoppingCartHtml(cartItems: CartItem[]) {
   //to display total price
   totalAmountTag.innerHTML = "Totalt: " + sum.toString() + " sek";
   cartTag.appendChild(totalAmountTag);
+  (document.getElementById("cart-total") as HTMLElement).innerHTML =
+    itemsInCartTotal.toString();
 }
 
 getListFromLS();
