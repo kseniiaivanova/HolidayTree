@@ -188,8 +188,8 @@ function reduceCart(item: CartItem, cartItems: CartItem[]) {
 
 function removeFromCart(item: CartItem, cartItems: CartItem[]) {
   item.amount === 0;
-  let listindex = cartItems.indexOf(item);
-  cartItems.splice(listindex, 1);
+  let listIndex = cartItems.indexOf(item);
+  cartItems.splice(listIndex, 1);
 
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
@@ -263,9 +263,9 @@ function shoppingCartHtml(cartItems: CartItem[]) {
 
   totalAmountTag.innerHTML = "Totalt: " + sum.toString() + " sek";
   cartTag.appendChild(totalAmountTag);
-
-  (document.getElementById("cart-total") as HTMLLIElement).value =
-    itemsInCartTotal;
+  console.log(itemsInCartTotal);
+  (document.getElementById("cart-total") as HTMLElement).innerHTML =
+    itemsInCartTotal.toString();
 }
 
 init();
