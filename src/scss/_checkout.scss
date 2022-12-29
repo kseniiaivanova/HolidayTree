@@ -1,3 +1,6 @@
+
+
+
 .cart {
   display: flex;
   flex-direction: column;
@@ -49,10 +52,35 @@
   padding-top: 5%;
 }
 
-.paycard {
+
+
+.forms {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding-top: 5%;
+  margin-inline: 200px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.inputs {
+  border: 1px solid lightgray;
+
+  margin-bottom: 5px;
+}
+
+
+
+.submit-button {
+  margin-top: 5%;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+ 
+  cursor: pointer;
+  font-size: 0.7em;
+  width: 30%;
+  height: 10%;
+  
+  
 }
