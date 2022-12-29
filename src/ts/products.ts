@@ -205,8 +205,11 @@ function shoppingCartHtml(cartItems: CartItem[]) {
   totalAmountTag.className = "totalamount";
 
   let sum: number = 0;
+  let itemsInCartTotal: number = 0;
   for (let i = 0; i < cartItems.length; i++) {
     sum = sum + cartItems[i].amount * cartItems[i].product.price;
+
+    itemsInCartTotal = itemsInCartTotal + cartItems[i].amount;
 
     let containerTag = document.createElement("div");
     let titleTag = document.createElement("h3");
@@ -260,6 +263,9 @@ function shoppingCartHtml(cartItems: CartItem[]) {
 
   totalAmountTag.innerHTML = "Totalt: " + sum.toString() + " sek";
   cartTag.appendChild(totalAmountTag);
+
+  (document.getElementById("cart-total") as HTMLLIElement).value =
+    itemsInCartTotal;
 }
 
 init();
