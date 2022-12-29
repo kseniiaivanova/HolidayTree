@@ -114,34 +114,33 @@ let cardForm = document.createElement("form") as HTMLFormElement;
 
 radioOne.addEventListener("change",()=> {
   
-
 cardForm.innerHTML = "";
 cardForm.classList.add("forms");
 let nameCard = document.createElement("input") as HTMLInputElement;
 nameCard.required;
-/* let nameLabelCard = document.createElement("label") as HTMLLabelElement;
-nameLabelCard.innerHTML="Namn"; */
-nameCard.setAttribute("placeholder", "Namn");
+nameCard.setAttribute("type", "text");
+nameCard.setAttribute("name", "FullName");
+nameCard.setAttribute("placeholder", "Förnamn och Efternamn");
 
-let surnameCard = document.createElement("input") as HTMLInputElement;
-surnameCard.required;
-/* let surnameCardLabel = document.createElement("label") as HTMLLabelElement;
-surnameCardLabel.innerHTML="Efternamn"; */
-surnameCard.setAttribute("placeholder", "Efternamn");
 let numberCard = document.createElement("input") as HTMLInputElement;
 numberCard.required;
-/* let numberCardLabel = document.createElement("label") as HTMLLabelElement;
-numberCardLabel.innerHTML= "Kortnummer"; */
+numberCard.setAttribute("type", "text");
+numberCard.setAttribute("name", "CardNum");
 numberCard.setAttribute("placeholder", "Kortnummer");
+
 let dateCard = document.createElement("input") as HTMLInputElement;
 dateCard.required;
-/* let dateCardLabel = document.createElement("label") as HTMLLabelElement;
-dateCardLabel.innerHTML = "MM/ÅÅ"; */
+dateCard.setAttribute("type", "text");
+dateCard.setAttribute("name", "CardDate");
 dateCard.setAttribute("placeholder", "MM/ÅÅ");
+
 let cvcCard = document.createElement("input") as HTMLInputElement;
-/* let cvcCardLabel = document.createElement("label") as HTMLLabelElement;
-cvcCardLabel.innerHTML = "CVC"; */
 cvcCard.setAttribute("placeholder", "CVC");
+cvcCard.required;
+cvcCard.setAttribute("type", "text");
+cvcCard.setAttribute("name", "CardCvc");
+
+
 let submit = document.createElement("input") as HTMLInputElement;
   submit.setAttribute("type", "submit");
   submit.setAttribute("value", "Slutför köp");
@@ -149,15 +148,14 @@ let submit = document.createElement("input") as HTMLInputElement;
 
 let cardCont: HTMLDivElement = document.getElementById("cardCont") as HTMLDivElement;
 cardCont.appendChild(cardForm);
-//cardForm.appendChild(nameLabelCard);
+
 cardForm.appendChild(nameCard);
-//cardForm.appendChild(surnameCardLabel);
-cardForm.appendChild(surnameCard);
-//cardForm.appendChild(numberCardLabel);
+
+
 cardForm.appendChild(numberCard);
-//cardForm.appendChild(dateCardLabel);
+
 cardForm.appendChild(dateCard);
-//cardForm.appendChild(cvcCardLabel);
+
 cardForm.appendChild(cvcCard);
 cardForm.appendChild(submit);
 
@@ -201,8 +199,8 @@ function createForm() {
   let pCode = document.createElement("input") as HTMLInputElement;
   pCode.required;
   pCode.setAttribute("type", "number");
-  pCode.setAttribute("number", "Personnummber");
-  pCode.setAttribute("placeholder", "Person Nummer");
+  pCode.setAttribute("number", "Personnummer");
+  pCode.setAttribute("placeholder", "Personnummer");
   //email
   let email = document.createElement("input") as HTMLInputElement;
   email.required;
