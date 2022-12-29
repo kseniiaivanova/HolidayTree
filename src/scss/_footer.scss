@@ -5,4 +5,18 @@ footer {
     color: whitesmoke;
     margin-top: 2em;
     padding: 1em;
+    
+    a {
+
+        text-decoration: none;
+        color: whitesmoke;
+    }
+
+    a:hover {
+        cursor: pointer;
+        color: whitesmoke;
+        text-decoration:underline;
+        padding-bottom: 10%;
+
+    }
 }
