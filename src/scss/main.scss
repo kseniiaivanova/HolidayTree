@@ -11,15 +11,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-inline: 200px;
+  margin-inline: 50px;
   border: 1px solid lightgray;
   border-radius: 5px;
 }
 
 .inputs {
   border: 1px solid lightgray;
-
   margin-bottom: 5px;
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 2px;
 }
 
 .submit-button {
@@ -27,7 +29,9 @@
   border-radius: 5px;
   background-color: black;
   color: white;
-  width: 20%;
-  height: 50px;
+  width: 50%;
+  height: 25%;
+  padding: 12px;
   cursor: pointer;
+  margin-bottom: 10px;
 }
