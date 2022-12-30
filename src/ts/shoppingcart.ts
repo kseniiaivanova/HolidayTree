@@ -77,8 +77,14 @@ export function shoppingCartHtml(cartItems: CartItem[]) {
   totalAmountTag.innerHTML = "Totalt: " + sum.toString() + " sek";
   cartTag.appendChild(totalAmountTag);
   console.log(itemsInCartTotal);
-  (document.getElementById("cart-total") as HTMLElement).innerHTML =
-    itemsInCartTotal.toString();
+  let iconTotal = document.getElementById("cart-total") as HTMLElement;
+  if (itemsInCartTotal > 0) {
+    iconTotal.innerHTML = itemsInCartTotal.toString();
+    iconTotal.classList.remove("displaynone");
+  }
+  if (itemsInCartTotal < 1) {
+    iconTotal.classList.add("displaynone");
+  }
 }
 function addMoreToCart(item: CartItem, cartItems: CartItem[]) {
   item.amount++;

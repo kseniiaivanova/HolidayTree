@@ -20,4 +20,8 @@
   font-style: normal;
   width: 15px;
   height: 15px;
+
+  &.displaynone {
+    display: none;
+  }
 }
