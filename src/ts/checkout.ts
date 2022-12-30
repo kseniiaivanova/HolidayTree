@@ -108,84 +108,92 @@ export function shoppingCartHtml(cartItems: CartItem[]) {
   cartTag.appendChild(totalAmountTag);
 }
 
-function chooseCard () {
-let radioOne: HTMLButtonElement = document.getElementById("card") as HTMLButtonElement;
-let cardForm = document.createElement("form") as HTMLFormElement;
+function chooseCard() {
+  let cardForm = document.createElement("form") as HTMLFormElement;
+  let billCont: HTMLDivElement = document.getElementById(
+    "bill"
+  ) as HTMLDivElement;
+  billCont.innerHTML = " ";
 
-radioOne.addEventListener("change",()=> {
-  
-cardForm.innerHTML = "";
-cardForm.classList.add("forms");
-let nameCard = document.createElement("input") as HTMLInputElement;
-nameCard.required;
-nameCard.setAttribute("type", "text");
-nameCard.setAttribute("name", "FullName");
-nameCard.setAttribute("placeholder", "Förnamn och Efternamn");
+  cardForm.innerHTML = "";
+  cardForm.classList.add("forms");
+  let nameCard = document.createElement("input") as HTMLInputElement;
+  nameCard.required;
+  nameCard.setAttribute("type", "text");
+  nameCard.setAttribute("name", "FullName");
+  nameCard.setAttribute("placeholder", "Förnamn och Efternamn");
 
-let numberCard = document.createElement("input") as HTMLInputElement;
-numberCard.required;
-numberCard.setAttribute("type", "text");
-numberCard.setAttribute("name", "CardNum");
-numberCard.setAttribute("placeholder", "Kortnummer");
+  let numberCard = document.createElement("input") as HTMLInputElement;
+  numberCard.required;
+  numberCard.setAttribute("type", "text");
+  numberCard.setAttribute("name", "CardNum");
+  numberCard.setAttribute("placeholder", "Kortnummer");
 
-let dateCard = document.createElement("input") as HTMLInputElement;
-dateCard.required;
-dateCard.setAttribute("type", "text");
-dateCard.setAttribute("name", "CardDate");
-dateCard.setAttribute("placeholder", "MM/ÅÅ");
+  let dateCard = document.createElement("input") as HTMLInputElement;
+  dateCard.required;
+  dateCard.setAttribute("type", "text");
+  dateCard.setAttribute("name", "CardDate");
+  dateCard.setAttribute("placeholder", "MM/ÅÅ");
 
-let cvcCard = document.createElement("input") as HTMLInputElement;
-cvcCard.setAttribute("placeholder", "CVC");
-cvcCard.required;
-cvcCard.setAttribute("type", "text");
-cvcCard.setAttribute("name", "CardCvc");
+  let cvcCard = document.createElement("input") as HTMLInputElement;
+  cvcCard.setAttribute("placeholder", "CVC");
+  cvcCard.required;
+  cvcCard.setAttribute("type", "text");
+  cvcCard.setAttribute("name", "CardCvc");
 
-
-let submit = document.createElement("input") as HTMLInputElement;
+  let submit = document.createElement("input") as HTMLInputElement;
   submit.setAttribute("type", "submit");
   submit.setAttribute("value", "Slutför köp");
   submit.classList.add("submit-button");
+  nameCard.classList.add("inputs");
+  numberCard.classList.add("inputs");
+  dateCard.classList.add("inputs");
+  cvcCard.classList.add("inputs");
 
-let cardCont: HTMLDivElement = document.getElementById("cardCont") as HTMLDivElement;
-cardCont.appendChild(cardForm);
+  let cardCont: HTMLDivElement = document.getElementById(
+    "cardCont"
+  ) as HTMLDivElement;
+  cardCont.appendChild(cardForm);
 
-cardForm.appendChild(nameCard);
+  cardForm.appendChild(nameCard);
 
+  cardForm.appendChild(numberCard);
 
-cardForm.appendChild(numberCard);
+  cardForm.appendChild(dateCard);
 
-cardForm.appendChild(dateCard);
+  cardForm.appendChild(cvcCard);
+  cardForm.appendChild(submit);
 
-cardForm.appendChild(cvcCard);
-cardForm.appendChild(submit);
+  submit.addEventListener("click", () => {
+    doneHtml();
+    console.log("tack för ditt köp");
+  });
+}
 
-submit.addEventListener("click", () => {
-  doneHtml();
-  console.log("tack för ditt köp");
-});
-
-
-
-});
-};
-
-function payBill() {
-
-  let bill = document.getElementById("faktura") as HTMLDivElement;
+function choosePayment() {
+  let radioOne: HTMLButtonElement = document.getElementById(
+    "card"
+  ) as HTMLButtonElement;
+  radioOne.addEventListener("change", () => {
+    chooseCard();
+  });
+  let bill = document.getElementById("faktura") as HTMLInputElement;
   bill.addEventListener("change", () => {
-    createForm();
-    
+    billForm();
+
     console.log("du klickade");
   });
 }
 
-payBill();
-
-function createForm() {
-
-  let cardForm: HTMLFormElement = document.querySelector("form") as HTMLFormElement;
+function billForm() {
+  let cardForm: HTMLFormElement = document.getElementById(
+    "cardCont"
+  ) as HTMLFormElement;
   cardForm.innerHTML = "";
-  let billCont: HTMLDivElement = document.getElementById("bill") as HTMLDivElement;
+  let billCont: HTMLDivElement = document.getElementById(
+    "bill"
+  ) as HTMLDivElement;
+  billCont.innerHTML = "";
   let form = document.createElement("form") as HTMLFormElement;
   // form.setAttribute("method", "post");
   // form.setAttribute("action", "submit");
@@ -214,8 +222,8 @@ function createForm() {
   //styling
   form.classList.add("forms");
   inputName.classList.add("inputs");
-  // pCode.classList.add("inputs");
-  // email.classList.add("inputs");
+  pCode.classList.add("inputs");
+  email.classList.add("inputs");
   submit.classList.add("submit-button");
   //create HTML
   form.appendChild(inputName);
@@ -236,8 +244,7 @@ function doneHtml() {
   document.body.appendChild(hTag);
 }
 
-
-chooseCard();
+// chooseCard();
 getListFromLS();
 console.log("start");
-
+choosePayment();

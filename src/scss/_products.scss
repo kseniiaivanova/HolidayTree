@@ -29,10 +29,12 @@
     }
 
     .img-container {
+      margin-top: 10px;
       display: flex;
       justify-content: center;
       height: 250px;
       width: 250px;
+      box-shadow: 4px 3px 8px 1px #969696;
       .prodImg {
         width: auto;
         height: 100%;
@@ -61,8 +63,11 @@
 }
 
 .prodImgModal {
-  width: 450px;
+  width: 350px;
   height: auto;
+  @include mixins.tablet {
+    width: 450px;
+  }
 }
 
 .shoppingcart {
