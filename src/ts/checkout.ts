@@ -67,7 +67,7 @@ export function shoppingCartHtml(cartItems: CartItem[]) {
     imgTag.src = cartItems[i].product.img;
     imgTag.alt = cartItems[i].product.name;
 
-    deleteBtn.innerHTML = "remove";
+    deleteBtn.innerHTML = "ta bort";
     containerTag.className = "cart__item";
     changeContainer.className = "cart__item__changecontainer";
     amountTag.innerHTML = cartItems[i].amount.toString();
@@ -164,7 +164,8 @@ function chooseCard() {
   cardForm.appendChild(cvcCard);
   cardForm.appendChild(submit);
 
-  submit.addEventListener("click", () => {
+  cardForm.addEventListener("submit", (e) => {
+    e.preventDefault();
     doneHtml();
     console.log("tack för ditt köp");
   });
@@ -232,16 +233,19 @@ function billForm() {
   form.appendChild(submit);
   billCont.appendChild(form);
 
-  submit.addEventListener("click", () => {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
     doneHtml();
     console.log("tack för ditt köp");
   });
 }
 
 function doneHtml() {
+  let main = document.getElementById("main") as HTMLDivElement;
+  main.innerHTML = "";
   let hTag = document.createElement("h3") as HTMLHeadingElement;
   hTag.innerText = "Tack för ditt köp!";
-  document.body.appendChild(hTag);
+  main.appendChild(hTag);
 }
 
 // chooseCard();
