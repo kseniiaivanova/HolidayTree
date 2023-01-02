@@ -1,14 +1,3 @@
-@use "startpage";
-@use "resets";
-@use "mixins";
-@use "footer";
-@use "products";
-@use "checkout";
-@use "shoppingcart";
-
-@use "navbar";
-@use "payments";
-
 .forms {
   display: flex;
   flex-direction: column;
