@@ -31,7 +31,18 @@ export function getListFromLS() {
   let cartItems: CartItem[] = JSON.parse(
     localStorage.getItem("cartItems") || "[]"
   );
-  shoppingCartHtml(cartItems);
+  if (cartItems.length < 1) {
+    let cartTag = document.getElementById("cart-container") as HTMLDivElement;
+    cartTag.innerHTML = "Din varukorg är tom";
+    let aTag = document.createElement("a");
+
+    aTag.href = "products.html";
+
+    aTag.innerHTML = " Tillbaka till produkter";
+    cartTag.appendChild(aTag);
+  } else {
+    shoppingCartHtml(cartItems);
+  }
 }
 export function shoppingCartHtml(cartItems: CartItem[]) {
   console.log("hello world");
@@ -118,27 +129,31 @@ function chooseCard() {
   cardForm.innerHTML = "";
   cardForm.classList.add("forms");
   let nameCard = document.createElement("input") as HTMLInputElement;
-  nameCard.required;
+
   nameCard.setAttribute("type", "text");
+  nameCard.setAttribute("required", "true");
   nameCard.setAttribute("name", "FullName");
   nameCard.setAttribute("placeholder", "Förnamn och Efternamn");
 
   let numberCard = document.createElement("input") as HTMLInputElement;
-  numberCard.required;
+
   numberCard.setAttribute("type", "text");
+  numberCard.setAttribute("required", "true");
   numberCard.setAttribute("name", "CardNum");
   numberCard.setAttribute("placeholder", "Kortnummer");
 
   let dateCard = document.createElement("input") as HTMLInputElement;
-  dateCard.required;
+
   dateCard.setAttribute("type", "text");
+  dateCard.setAttribute("required", "true");
   dateCard.setAttribute("name", "CardDate");
   dateCard.setAttribute("placeholder", "MM/ÅÅ");
 
   let cvcCard = document.createElement("input") as HTMLInputElement;
   cvcCard.setAttribute("placeholder", "CVC");
-  cvcCard.required;
+
   cvcCard.setAttribute("type", "text");
+  cvcCard.setAttribute("required", "true");
   cvcCard.setAttribute("name", "CardCvc");
 
   let submit = document.createElement("input") as HTMLInputElement;
@@ -200,21 +215,24 @@ function billForm() {
   // form.setAttribute("action", "submit");
   //full name input
   let inputName = document.createElement("input") as HTMLInputElement;
-  inputName.required;
+
   inputName.setAttribute("type", "text");
+  inputName.setAttribute("required", "true");
   inputName.setAttribute("name", "FullName");
   inputName.setAttribute("placeholder", "Förnamn och Efternamn");
   //pcode number
   let pCode = document.createElement("input") as HTMLInputElement;
-  pCode.required;
+
   pCode.setAttribute("type", "number");
+  pCode.setAttribute("required", "true");
   pCode.setAttribute("number", "Personnummer");
   pCode.setAttribute("placeholder", "Personnummer");
   //email
   let email = document.createElement("input") as HTMLInputElement;
-  email.required;
+
   email.setAttribute("type", "email");
-  email.setAttribute("text", "emailadress");
+  email.setAttribute("required", "true");
+  email.setAttribute("text", "");
   email.setAttribute("placeholder", "Email Adress");
   //submit button
   let submit = document.createElement("input") as HTMLInputElement;
@@ -235,6 +253,7 @@ function billForm() {
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+
     doneHtml();
     console.log("tack för ditt köp");
   });
@@ -245,6 +264,7 @@ function doneHtml() {
   main.innerHTML = "";
   let hTag = document.createElement("h3") as HTMLHeadingElement;
   hTag.innerText = "Tack för ditt köp!";
+  localStorage.clear();
   main.appendChild(hTag);
 }
 
