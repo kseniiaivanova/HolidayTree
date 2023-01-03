@@ -1,10 +1,26 @@
+@use "mixins";
+
 footer {
+  display: flex;
   flex-direction: column;
   text-align: left;
+
+  @include mixins.tablet {
+        
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+    
+  }
+
   background-color: rgb(220, 38, 71);
   color: whitesmoke;
   margin-top: 0;
   padding: 1em;
+  
+  
 
   a {
     text-decoration: none;
