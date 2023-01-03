@@ -54,6 +54,9 @@
 .filter-btn {
   width: auto;
   font-size: 0.5em;
+  border-radius: 10px;
+  border-color: var.$primarycolor;
+  margin-top: 10px;
   @include mixins.tablet {
     font-size: 0.8em;
   }
