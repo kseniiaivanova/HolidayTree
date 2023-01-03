@@ -12,7 +12,7 @@ function init() {
     "button-product"
   ) as HTMLButtonElement;
   startButton.addEventListener("click", () => {
-    location.href = "products.html";
+    location.href = "./pages/products.html";
   });
   openCart();
   closeCart();
