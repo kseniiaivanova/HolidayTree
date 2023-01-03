@@ -72,7 +72,7 @@
   width: 0;
   position: absolute;
   z-index: 1;
-  top: 10px;
+  top: 0;
   right: 0;
   background-color: rgb(213, 178, 178);
   overflow-x: hidden;
@@ -92,6 +92,9 @@
   color: #818181;
   display: block;
   transition: 0.3s;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .sidebar a:hover {
