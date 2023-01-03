@@ -7,7 +7,7 @@ function init() {
   choosePayment();
 }
 
-export function addToCart(item: CartItem, cartItems: CartItem[]) {
+function addToCart(item: CartItem, cartItems: CartItem[]) {
   item.amount++;
 
   shoppingCartHtml(cartItems);
@@ -20,8 +20,9 @@ function reduceCart(item: CartItem, cartItems: CartItem[]) {
     let listindex = cartItems.indexOf(item);
     cartItems.splice(listindex, 1);
   }
-  shoppingCartHtml(cartItems);
+
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  getListFromLS();
 }
 
 function removeFromCart(item: CartItem, cartItems: CartItem[]) {
@@ -30,10 +31,10 @@ function removeFromCart(item: CartItem, cartItems: CartItem[]) {
 
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
-  shoppingCartHtml(cartItems);
+  getListFromLS();
 }
 
-export function getListFromLS() {
+function getListFromLS() {
   let cartItems: CartItem[] = JSON.parse(
     localStorage.getItem("cartItems") || "[]"
   );
@@ -50,7 +51,7 @@ export function getListFromLS() {
     shoppingCartHtml(cartItems);
   }
 }
-export function shoppingCartHtml(cartItems: CartItem[]) {
+function shoppingCartHtml(cartItems: CartItem[]) {
   console.log("hello world");
   // elements for the hole cart
 
@@ -217,9 +218,6 @@ function billForm() {
   ) as HTMLDivElement;
   billCont.innerHTML = "";
   let form = document.createElement("form") as HTMLFormElement;
-  // form.setAttribute("method", "post");
-  // form.setAttribute("action", "submit");
-  //full name input
   let inputName = document.createElement("input") as HTMLInputElement;
 
   inputName.setAttribute("type", "text");
@@ -273,7 +271,5 @@ function doneHtml() {
   localStorage.clear();
   main.appendChild(hTag);
 }
-
-// chooseCard();
 
 init();
