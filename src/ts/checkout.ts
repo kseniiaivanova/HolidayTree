@@ -1,6 +1,12 @@
 import { CartItem } from "./models/CartItem";
 import { Product } from "./models/Product";
 
+function init() {
+  getListFromLS();
+  console.log("start");
+  choosePayment();
+}
+
 export function addToCart(item: CartItem, cartItems: CartItem[]) {
   item.amount++;
 
@@ -269,6 +275,5 @@ function doneHtml() {
 }
 
 // chooseCard();
-getListFromLS();
-console.log("start");
-choosePayment();
+
+init();
