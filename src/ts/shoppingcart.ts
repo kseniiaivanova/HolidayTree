@@ -5,8 +5,6 @@ export function openCart() {
   startButton.addEventListener("click", () => {
     let openSidebar = document.getElementById("mySidebar") as HTMLDivElement;
     openSidebar.style.width = "250px";
-    let openMain = document.getElementById("main") as HTMLDivElement;
-    openMain.style.marginLeft = "250px";
   });
 }
 export function shoppingCartHtml(cartItems: CartItem[]) {
@@ -117,8 +115,6 @@ export function closeCart() {
   closeButton.addEventListener("click", () => {
     let closeSidebar = document.getElementById("mySidebar") as HTMLDivElement;
     closeSidebar.style.width = "0";
-    let closeMain = document.getElementById("main") as HTMLDivElement;
-    closeMain.style.marginLeft = "0";
   });
 }
 export function checkout() {
