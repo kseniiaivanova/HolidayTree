@@ -137,13 +137,17 @@ function chooseCard() {
   let nameCard = document.createElement("input") as HTMLInputElement;
 
   nameCard.setAttribute("type", "text");
+  nameCard.setAttribute("minlength", "4");
+
   nameCard.setAttribute("required", "true");
   nameCard.setAttribute("name", "FullName");
   nameCard.setAttribute("placeholder", "Förnamn och Efternamn");
 
   let numberCard = document.createElement("input") as HTMLInputElement;
 
-  numberCard.setAttribute("type", "number");
+  numberCard.setAttribute("type", "tel");
+  numberCard.setAttribute("minlength", "16");
+  numberCard.setAttribute("maxlength", "16");
   numberCard.setAttribute("required", "true");
   numberCard.setAttribute("name", "CardNum");
   numberCard.setAttribute("placeholder", "Kortnummer");
@@ -151,14 +155,19 @@ function chooseCard() {
   let dateCard = document.createElement("input") as HTMLInputElement;
 
   dateCard.setAttribute("type", "text");
+  dateCard.setAttribute("minlength", "5");
+  dateCard.setAttribute("maxlength", "5");
   dateCard.setAttribute("required", "true");
   dateCard.setAttribute("name", "CardDate");
   dateCard.setAttribute("placeholder", "MM/ÅÅ");
 
   let cvcCard = document.createElement("input") as HTMLInputElement;
   cvcCard.setAttribute("placeholder", "CVC");
+  cvcCard.setAttribute("minlength", "3");
+  cvcCard.setAttribute("maxlength", "3");
 
-  cvcCard.setAttribute("type", "number");
+  cvcCard.setAttribute("type", "tel");
+
   cvcCard.setAttribute("required", "true");
   cvcCard.setAttribute("name", "CardCvc");
 
