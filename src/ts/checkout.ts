@@ -150,7 +150,7 @@ function chooseCard() {
 
   let dateCard = document.createElement("input") as HTMLInputElement;
 
-  dateCard.setAttribute("type", "number");
+  dateCard.setAttribute("type", "text");
   dateCard.setAttribute("required", "true");
   dateCard.setAttribute("name", "CardDate");
   dateCard.setAttribute("placeholder", "MM/ÅÅ");
