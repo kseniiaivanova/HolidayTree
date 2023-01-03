@@ -143,14 +143,14 @@ function chooseCard() {
 
   let numberCard = document.createElement("input") as HTMLInputElement;
 
-  numberCard.setAttribute("type", "text");
+  numberCard.setAttribute("type", "number");
   numberCard.setAttribute("required", "true");
   numberCard.setAttribute("name", "CardNum");
   numberCard.setAttribute("placeholder", "Kortnummer");
 
   let dateCard = document.createElement("input") as HTMLInputElement;
 
-  dateCard.setAttribute("type", "text");
+  dateCard.setAttribute("type", "number");
   dateCard.setAttribute("required", "true");
   dateCard.setAttribute("name", "CardDate");
   dateCard.setAttribute("placeholder", "MM/ÅÅ");
@@ -158,7 +158,7 @@ function chooseCard() {
   let cvcCard = document.createElement("input") as HTMLInputElement;
   cvcCard.setAttribute("placeholder", "CVC");
 
-  cvcCard.setAttribute("type", "text");
+  cvcCard.setAttribute("type", "number");
   cvcCard.setAttribute("required", "true");
   cvcCard.setAttribute("name", "CardCvc");
 
