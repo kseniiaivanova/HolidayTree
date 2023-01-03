@@ -1,5 +1,8 @@
 @use "variables" as var;
 
+#nav {
+  padding: 0%;
+}
 .container-fluid {
   display: flex;
   flex-direction: row-reverse;
