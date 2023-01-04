@@ -147,8 +147,8 @@ function chooseCard() {
   let numberCard = document.createElement("input") as HTMLInputElement;
 
   numberCard.setAttribute("type", "tel");
-  numberCard.setAttribute("minlength", "16");
-  numberCard.setAttribute("maxlength", "16");
+  numberCard.setAttribute("pattern", "[0-9]{16}");
+  numberCard.setAttribute("title", "ange 16 siffror!");
   numberCard.setAttribute("required", "true");
   numberCard.setAttribute("name", "CardNum");
   numberCard.setAttribute("placeholder", "Kortnummer");
@@ -164,11 +164,10 @@ function chooseCard() {
 
   let cvcCard = document.createElement("input") as HTMLInputElement;
   cvcCard.setAttribute("placeholder", "CVC");
-  cvcCard.setAttribute("minlength", "3");
-  cvcCard.setAttribute("maxlength", "3");
 
   cvcCard.setAttribute("type", "tel");
-
+  cvcCard.setAttribute("pattern", "[0-9]{3}");
+  cvcCard.setAttribute("title", "ange 3 siffror!");
   cvcCard.setAttribute("required", "true");
   cvcCard.setAttribute("name", "CardCvc");
 
@@ -236,10 +235,12 @@ function billForm() {
   //pcode number
   let pCode = document.createElement("input") as HTMLInputElement;
 
-  pCode.setAttribute("type", "number");
+  pCode.setAttribute("type", "tel");
   pCode.setAttribute("required", "true");
+  pCode.setAttribute("title", "ange 10 siffror!");
   pCode.setAttribute("number", "Personnummer");
   pCode.setAttribute("placeholder", "Personnummer");
+  pCode.setAttribute("pattern", "[0-9]{10}");
   //email
   let email = document.createElement("input") as HTMLInputElement;
 
