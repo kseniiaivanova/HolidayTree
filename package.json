@@ -7,7 +7,6 @@
     "@parcel/validator-typescript": "^2.8.2",
     "@types/jest": "^29.2.4",
     "buffer": "^5.7.1",
-    "gh-pages": "^5.0.0",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
     "parcel": "^2.8.2",
@@ -21,8 +20,9 @@
   "scripts": {
     "test": "jest --watchAll",
     "start": "npx parcel src/index.html",
+    "build": "parcel build src/index.html --public-url https://kseniiaivanova.github.io/HolidayTree/",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -b main"
+    "deploy": "gh-pages -d dist"
   },
   "jest": {
     "preset": "ts-jest",
