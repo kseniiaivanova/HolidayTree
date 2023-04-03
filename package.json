@@ -1,5 +1,5 @@
 {
-  "homepage": "https://kseniiaivanova.github.io/HolidayTree",
+  "homepage": ".",
   "devDependencies": {
     "@jest/globals": "^29.3.1",
     "@parcel/transformer-sass": "^2.8.2",
@@ -23,7 +23,7 @@
   "scripts": {
     "test": "jest --watchAll",
     "start": "npx parcel src/index.html",
-    "build": "parcel build src/index.html --public-url https://kseniiaivanova.github.io/HolidayTree/",
+    "build": "parcel build src/index.html src/pages/checkout.html src/pages/products.html --public-url https://kseniiaivanova.github.io/HolidayTree/",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
