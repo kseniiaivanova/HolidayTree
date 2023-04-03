@@ -122,6 +122,6 @@ export function checkout() {
     "button-checkout"
   ) as HTMLButtonElement;
   checkoutButton.addEventListener("click", () => {
-    location.href = "../pages/checkout.html";
+    location.href = "/HolidayTree/pages/checkout.html";
   });
 }
