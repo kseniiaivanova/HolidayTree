@@ -1,5 +1,5 @@
 {
-  "homepage": ".",
+  "homepage": "/",
   "devDependencies": {
     "@jest/globals": "^29.3.1",
     "@parcel/transformer-sass": "^2.8.2",
